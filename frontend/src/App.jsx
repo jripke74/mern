@@ -3,10 +3,16 @@ import GoalList from './components/GoalList.jsx';
 import './App.css';
 
 function App() {
+  const courseGoals = [
+    { id: 'cg1', text: 'Finish the Course' },
+    { id: 'cg2', text: 'earn all about the Course Main Topic' },
+    { id: 'cg3', text: 'Help other students in the Course Q&A' },
+  ];
+
   return (
     <div className="course-goals">
       <h2>Course Goals</h2>
-      <GoalList />
+      <GoalList goals={courseGoals} />
     </div>
   );
 }

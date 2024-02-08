@@ -1,4 +1,5 @@
-import GoalList from './components/GoalList.jsx';
+import GoalList from './components/GoalList/GoalList.jsx';
+import NewGoal from './components/NewGoal/NewGoal.jsx';
 
 import './App.css';
 
@@ -12,6 +13,7 @@ function App() {
   return (
     <div className="course-goals">
       <h2>Course Goals</h2>
+      <NewGoal />
       <GoalList goals={courseGoals} />
     </div>
   );

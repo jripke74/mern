@@ -1,6 +1,6 @@
 import './NewGoal.css';
 
-export default function NewGoal() {
+export default function NewGoal({ onAddGoal }) {
   const addGoalHandler = function (event) {
     event.preventDefault();
 
@@ -9,7 +9,7 @@ export default function NewGoal() {
       text: 'My new goal',
     };
 
-    console.log(newGoal);
+    onAddGoal(newGoal);
   };
 
   return (

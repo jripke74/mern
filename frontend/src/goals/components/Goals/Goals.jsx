@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import NewGoal from './NewGoal/NewGoal';
-import GoalList from './GoalList/GoalList';
+import NewGoal from '../NewGoal/NewGoal';
+import GoalList from '../GoalList/GoalList';
 
 import './Goals.css';
 

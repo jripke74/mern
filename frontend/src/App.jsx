@@ -5,8 +5,6 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import './App.css';
-
 import Goals from './goals/components/Goals/Goals.jsx';
 import Users from './user/pages/Users.jsx';
 import NewPlace from './places/pages/NewPlace.jsx';

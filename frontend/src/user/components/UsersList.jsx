@@ -5,13 +5,13 @@ export default function UsersList({ items }) {
   if (items.length === 0) {
     return (
       <div className="center">
-        <h2>No users foind.</h2>
+        <h2>No users found.</h2>
       </div>
     );
   }
 
   return (
-    <ul>
+    <ul className="users-list">
       {items.map((user) => (
         <UserItem
           key={user.id}

@@ -8,6 +8,7 @@ import {
 import Goals from './goals/components/Goals/Goals.jsx';
 import Users from './user/pages/Users.jsx';
 import NewPlace from './places/pages/NewPlace.jsx';
+import UserPlaces from './places/pages/UserPlaces.jsx';
 import MainNavigation from './shared/components/Navigation/MainNavigation.jsx';
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
         <Switch>
           <Route path="/goals" exact>
             <Goals />
+          </Route>
+          <Route path="/:userId/places" exact>
+            <UserPlaces />
           </Route>
           <Route path="/places/new" exact>
             <NewPlace />

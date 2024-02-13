@@ -4,8 +4,16 @@ import Card from '../../shared/components/UIElements/Card.jsx';
 import Button from '../../shared/components/FormElements/Button.jsx';
 import './PlaceItem.css';
 import Modal from '../../shared/components/UIElements/Modal.jsx';
+import Map from '../../shared/components/UIElements/Map.jsx';
 
-export default function PlaceItem({ image, title, address, description, id }) {
+export default function PlaceItem({
+  image,
+  title,
+  address,
+  description,
+  id,
+  coordinates,
+}) {
   const [showMap, setShowMap] = useState(false);
 
   function openMapHandler() {
@@ -27,7 +35,7 @@ export default function PlaceItem({ image, title, address, description, id }) {
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
       >
         <div className="map-container">
-          <h2>THE MAP!</h2>
+          <Map center={coordinates} zoom={16} />
         </div>
       </Modal>
       <li className="place-item">

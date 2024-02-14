@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 
 import { validate } from '../../../util/validators';
 import './Input.css';
@@ -21,27 +21,25 @@ function inputReducer(state, action) {
   }
 }
 
-export default function Input({
-  formElement,
-  label,
-  id,
-  type,
-  placeholder,
-  rows,
-  errorText,
-  validators,
-}) {
+export default function Input(props) {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: '',
     isTouched: false,
     isValid: false,
   });
 
+  const { id, onInput } = props;
+  const { value, isValid } = inputState;
+
+  useEffect(() => {
+    onInput(id, value, isValid);
+  }, [id, value, isValid, onInput]);
+
   function changeHandler(event) {
     dispatch({
       type: 'CHANGE',
       val: event.target.value,
-      validators,
+      validators: props.validators,
     });
   }
 
@@ -52,11 +50,11 @@ export default function Input({
   }
 
   const element =
-    formElement === 'input' ? (
+    props.formElement === 'input' ? (
       <input
         id={id}
-        type={type}
-        placeholder={placeholder}
+        type={props.type}
+        placeholder={props.placeholder}
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}
@@ -64,7 +62,7 @@ export default function Input({
     ) : (
       <textarea
         id={id}
-        rows={rows || 3}
+        rows={props.rows || 3}
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}
@@ -77,9 +75,9 @@ export default function Input({
         !inputState.isValid && inputState.isTouched && 'form-control--invalid'
       }`}
     >
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>{props.label}</label>
       {element}
-      {!inputState.isValid && inputState.isTouched && <p>{errorText}</p>}
+      {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
     </div>
   );
 }

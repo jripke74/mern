@@ -50,9 +50,9 @@ export default function Input(props) {
   }
 
   const element =
-    props.formElement === 'input' ? (
+    props.element === 'input' ? (
       <input
-        id={id}
+        id={props.id}
         type={props.type}
         placeholder={props.placeholder}
         onChange={changeHandler}
@@ -61,7 +61,7 @@ export default function Input(props) {
       />
     ) : (
       <textarea
-        id={id}
+        id={props.id}
         rows={props.rows || 3}
         onChange={changeHandler}
         onBlur={touchHandler}
@@ -75,7 +75,7 @@ export default function Input(props) {
         !inputState.isValid && inputState.isTouched && 'form-control--invalid'
       }`}
     >
-      <label htmlFor={id}>{props.label}</label>
+      <label htmlFor={props.id}>{props.label}</label>
       {element}
       {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
     </div>

@@ -11,6 +11,7 @@ import NewPlace from './places/pages/NewPlace.jsx';
 import UserPlaces from './places/pages/UserPlaces.jsx';
 import MainNavigation from './shared/components/Navigation/MainNavigation.jsx';
 import UpdatePlace from './places/pages/UpdatePlace.jsx';
+import Auth from './user/pages/Auth.js';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/places/:placeId" exact>
             <UpdatePlace />
+          </Route>
+          <Route path="/auth">
+            <Auth />
           </Route>
           <Redirect to="/" />
         </Switch>

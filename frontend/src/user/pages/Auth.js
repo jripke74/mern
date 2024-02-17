@@ -1,12 +1,19 @@
 import Input from '../../shared/components/FormElements/Input';
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
-import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from '../../util/validators';
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from '../../util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
 import './Auth.css';
+import { useState } from 'react';
 
 export default function Auth() {
-  const [formState, inputHandler] = useForm(
+  const [isLoginMode, setIsloginMode] = useState(true);
+
+  const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
         value: '',
@@ -20,6 +27,27 @@ export default function Auth() {
     false
   );
 
+  const switchModeHandler = () => {
+    if (!isLoginMode) {
+      setFormData(
+        { ...formState.inputs, name: undefined },
+        formState.inputs.email.isValid && formState.inputs.password.isValid
+      );
+    } else {
+      setFormData(
+        {
+          ...formState.inputs,
+          name: {
+            value: '',
+            isValid: false,
+          },
+        },
+        false
+      );
+    }
+    setIsloginMode((prevMode) => !prevMode);
+  };
+
   const authSubmitHandler = (event) => {
     event.preventDefault();
     console.log(formState.inputs);
@@ -30,6 +58,17 @@ export default function Auth() {
       <h2>Login Reuired</h2>
       <hr />
       <form onSubmit={authSubmitHandler}>
+        {!isLoginMode && (
+          <Input
+            element="input"
+            id="name"
+            type="text"
+            label="Your Name"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a name."
+            onInput={inputHandler}
+          />
+        )}
         <Input
           element="input"
           id="email"
@@ -49,9 +88,12 @@ export default function Auth() {
           onInput={inputHandler}
         />
         <Button disabled={!formState.isValid} type="submit">
-          LOGIN
+          {isLoginMode ? 'LOGIN' : 'SIGNUP'}
         </Button>
       </form>
+      <Button inverse onClick={switchModeHandler}>
+        SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
+      </Button>
     </Card>
   );
 }

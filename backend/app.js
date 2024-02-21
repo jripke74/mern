@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const placesRoutes = require('./routes/places-routes');
 const usersRoutes = require('./routes/users-routes');
@@ -25,4 +26,10 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || 'An unkown error occurred!' });
 });
 
-app.listen(5003);
+mongoose
+  .connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.mxuwfw1.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+  )
+  .then(() => {
+    app.listen(5003);
+  });

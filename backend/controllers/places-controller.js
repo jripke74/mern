@@ -58,7 +58,9 @@ const getPlacesByUserId = async (req, res, next) => {
   }
 
   if (!places || places.length === 0) {
-    throw new Error('Could not find a places for the provided user id.', 404);
+    return next(
+      new Error('Could not find a places for the provided user id.', 404)
+    );
   }
 
   res.json({
@@ -104,7 +106,9 @@ const createPlace = async (req, res, next) => {
 const updatePlace = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    throw new HttpError('Invalid inputs passed, please check your data.', 422);
+    return next(
+      new HttpError('Invalid inputs passed, please check your data.', 422)
+    );
   }
 
   const { title, description } = req.body;

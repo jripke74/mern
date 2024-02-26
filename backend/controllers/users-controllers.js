@@ -35,7 +35,7 @@ const signup = async (req, res, next) => {
       new HttpError('Invalid inputs passed, please check your data.', 422)
     );
   }
-  const { name, email, password, places } = req.body;
+  const { name, email, password } = req.body;
 
   let existingUser;
   try {
@@ -61,7 +61,7 @@ const signup = async (req, res, next) => {
     email,
     image: 'https://www.esbnyc.com/sites/default/files/2020-01/ESB%20Day.jpg',
     password,
-    places,
+    places: [],
   });
 
   try {

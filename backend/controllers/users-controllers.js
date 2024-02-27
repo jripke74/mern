@@ -1,17 +1,7 @@
-const { v4: uuid } = require('uuid');
 const { validationResult } = require('express-validator');
 
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
-
-const DUMMY_USERS = [
-  {
-    id: 'u1',
-    name: 'Jeff Ripke',
-    email: 'test@test.com',
-    password: 'testers',
-  },
-];
 
 const getUsers = async (req, res, next) => {
   let users;
@@ -59,15 +49,17 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image: 'https://www.esbnyc.com/sites/default/files/2020-01/ESB%20Day.jpg',
     password,
+    image: 'https://www.esbnyc.com/sites/default/files/2020-01/ESB%20Day.jpg',
     places: [],
   });
+
+  console.log(createdUser);
 
   try {
     await createdUser.save();
   } catch (err) {
-    const error = newHttp('Signing Up failed, please try again.', 500);
+    const error = new HttpError('Signing Up failed, please try again!!!!', 500);
     return next(error);
   }
 

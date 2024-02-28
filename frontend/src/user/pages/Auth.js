@@ -1,8 +1,10 @@
-import Input from '../../shared/components/FormElements/Input';
-import Card from '../../shared/components/UIElements/Card';
 import { useContext, useState } from 'react';
 
-import Button from '../../shared/components/FormElements/Button';
+import Input from '../../shared/components/FormElements/Input.jsx';
+import Card from '../../shared/components/UIElements/Card.jsx';
+import Button from '../../shared/components/FormElements/Button.jsx';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal.jsx';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner.jsx';
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -15,6 +17,8 @@ import './Auth.css';
 export default function Auth() {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsloginMode] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -57,6 +61,7 @@ export default function Auth() {
     if (isLoginMode) {
     } else {
       try {
+        setIsLoading(true);
         const response = await fetch('http://localhost:5003/api/users/signup', {
           method: 'POST',
           headers: {
@@ -71,16 +76,22 @@ export default function Auth() {
 
         const responseData = await response.json();
         console.log(responseData);
+        setIsLoading(false);
+        auth.login();
       } catch (err) {
         console.log(err);
+        setIsLoading(false);
+        setError(err.message || 'Something went wrong, please try again.');
       }
     }
+    setIsLoading(false);
 
     auth.login();
   };
 
   return (
     <Card className="authentication">
+      {isLoading && <LoadingSpinner asOverlay />}
       <h2>Login Reuired</h2>
       <hr />
       <form onSubmit={authSubmitHandler}>

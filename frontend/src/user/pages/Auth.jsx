@@ -9,9 +9,9 @@ import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
-} from '../../util/validators';
-import { useForm } from '../../shared/hooks/form-hook';
-import { AuthContext } from '../../shared/context/auth-context';
+} from '../../util/validators.js';
+import { useForm } from '../../shared/hooks/form-hook.js';
+import { AuthContext } from '../../shared/context/auth-context.js';
 import './Auth.css';
 
 export default function Auth() {
@@ -102,12 +102,11 @@ export default function Auth() {
         if (!response.ok) {
           throw new Error(responseData.message);
         }
-        console.log(responseData);
         setIsLoading(false);
         auth.login();
       } catch (err) {
-        setIsLoading(false);
-        setError(err.message || 'Something went wrong, please try again.');
+        setIsLoading(true);
+        setError(err.message || 'Something went  wrong, please try again.');
       }
     }
   };

@@ -12,7 +12,7 @@ import NewPlace from './places/pages/NewPlace.jsx';
 import UserPlaces from './places/pages/UserPlaces.jsx';
 import MainNavigation from './shared/components/Navigation/MainNavigation.jsx';
 import UpdatePlace from './places/pages/UpdatePlace.jsx';
-import Auth from './user/pages/Auth.js';
+import Auth from './user/pages/Auth.jsx';
 import { AuthContext } from './shared/context/auth-context.js';
 
 function App() {

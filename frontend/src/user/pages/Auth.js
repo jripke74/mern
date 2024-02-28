@@ -63,9 +63,9 @@ export default function Auth() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            name: formState.input.name.value,
-            email: formState.input.email.value,
-            password: formState.input.password.value,
+            name: formState.inputs.name.value,
+            email: formState.inputs.email.value,
+            password: formState.inputs.password.value,
           }),
         });
 

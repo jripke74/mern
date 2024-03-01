@@ -60,7 +60,7 @@ export default function Auth() {
 
     if (isLoginMode) {
       try {
-        await sendRequest(
+        const responseData = await sendRequest(
           'http://localhost:5003/api/users/login',
           'POST',
           JSON.stringify({
@@ -71,11 +71,11 @@ export default function Auth() {
             'Content-Type': 'application/json',
           }
         );
-        auth.login();
+        auth.login(responseData.user.id);
       } catch (err) {}
     } else {
       try {
-        await sendRequest(
+        const responseData = await sendRequest(
           'http://localhost:5003/api/users/signup',
           'POST',
           JSON.stringify({
@@ -88,7 +88,7 @@ export default function Auth() {
           }
         );
 
-        auth.login();
+        auth.login(responseData.user.id);
       } catch (err) {}
     }
   };

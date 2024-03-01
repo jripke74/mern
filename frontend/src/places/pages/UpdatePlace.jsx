@@ -79,7 +79,6 @@ export default function UpdatePlace() {
 
   const placeUdateSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(formState.inputs);
   };
 
   if (!identifiedPlace) {

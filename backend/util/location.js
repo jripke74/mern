@@ -13,7 +13,7 @@ async function getCoordsForAddress(address) {
       q: address,
     })
     .then((response) => {
-      // console.log(response.results[0]);
+      // console.log('location.js', response);
       coordinates = {
         lat: response.results[0].coordinate.latitude,
         lng: response.results[0].coordinate.longitude,

@@ -19,7 +19,6 @@ export default function UserPlaces() {
           `http://localhost:5003/api/places/user/${userId}`
         );
         setLoadedPlaces(responseData.places);
-        console.log(responseData);
       } catch (err) {}
     };
     fetchPlaces();

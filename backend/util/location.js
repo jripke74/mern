@@ -1,7 +1,6 @@
 const AppleMaps = require('apple-maps-server-sdk').default;
 
 const HttpError = require('../models/http-error');
-// const { appleMapKitKey } = require("../secrets/authKeys");
 
 const appleMaps = new AppleMaps({
   authorizationToken: process.env.MAP_KIT,
@@ -13,7 +12,7 @@ async function getCoordsForAddress(address) {
       q: address,
     })
     .then((response) => {
-      // console.log('location.js', response);
+      // console.log('location.js', response.results);
       coordinates = {
         lat: response.results[0].coordinate.latitude,
         lng: response.results[0].coordinate.longitude,

@@ -126,8 +126,8 @@ export default function Auth() {
             id="password"
             type="password"
             label="Password"
-            validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText="Please enter a valid email, at least 5 charaters."
+            validators={[VALIDATOR_MINLENGTH(6)]}
+            errorText="Please enter a valid email, at least 6 charaters."
             onInput={inputHandler}
           />
           <Button disabled={!formState.isValid} type="submit">

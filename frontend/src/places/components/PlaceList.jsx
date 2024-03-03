@@ -4,7 +4,7 @@ import Button from '../../shared/components/FormElements/Button.jsx';
 
 import './PlaceList.css';
 
-export default function PlaceList({ items }) {
+export default function PlaceList({ items, onDeletePlace }) {
   if (items.length === 0) {
     return (
       <div className="place-list center">
@@ -28,6 +28,7 @@ export default function PlaceList({ items }) {
           address={place.address}
           creatorId={place.creator}
           coordinates={place.location}
+          onDelete={onDeletePlace}
         />
       ))}
     </ul>

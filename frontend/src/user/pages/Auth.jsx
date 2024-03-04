@@ -5,6 +5,7 @@ import Card from '../../shared/components/UIElements/Card.jsx';
 import Button from '../../shared/components/FormElements/Button.jsx';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal.jsx';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner.jsx';
+import ImageUpload from '../../shared/components/FormElements/ImageUpload.jsx';
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -112,6 +113,7 @@ export default function Auth() {
               onInput={inputHandler}
             />
           )}
+          {!isLoginMode && <ImageUpload center id="image" />}
           <Input
             element="input"
             id="email"

@@ -50,7 +50,7 @@ const signup = async (req, res, next) => {
     name,
     email,
     password,
-    image: 'https://www.esbnyc.com/sites/default/files/2020-01/ESB%20Day.jpg',
+    image: req.file.path,
     places: [],
   });
 

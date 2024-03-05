@@ -85,7 +85,7 @@ export default function PlaceItem({
         <Card className="place-item__content">
           {isLoading && <LoadingSpinner />}
           <div className="place-item__image">
-            <img src={image} alt={title} />
+            <img src={`http://localhost:5003${image}`} alt={title} />
           </div>
           <div className="place-item__info">
             <h2>{title}</h2>

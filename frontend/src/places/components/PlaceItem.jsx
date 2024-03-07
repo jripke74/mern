@@ -2,13 +2,13 @@ import { useContext, useState } from 'react';
 
 import Card from '../../shared/components/UIElements/Card.jsx';
 import Button from '../../shared/components/FormElements/Button.jsx';
-import './PlaceItem.css';
 import Modal from '../../shared/components/UIElements/Modal.jsx';
 import Map from '../../shared/components/UIElements/Map.jsx';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal.jsx';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner.jsx';
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import './PlaceItem.css';
 
 export default function PlaceItem({
   image,

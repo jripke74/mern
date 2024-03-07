@@ -113,7 +113,7 @@ export default function UpdatePlace() {
           <Input
             id="description"
             element="textarea"
-            label="Title"
+            label="Description"
             validators={[VALIDATOR_MINLENGTH(5)]}
             errorText="Please enter a valid description (min. 5 characters)."
             onInput={inputHandler}
@@ -121,7 +121,7 @@ export default function UpdatePlace() {
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>
-            UPDATE
+            UPDATE PLACE
           </Button>
         </form>
       )}

@@ -76,7 +76,7 @@ export default function Auth() {
             'Content-Type': 'application/json',
           }
         );
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId);
       } catch (err) {}
     } else {
       try {
@@ -91,7 +91,7 @@ export default function Auth() {
           formData
         );
 
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId);
       } catch (err) {}
     }
   };

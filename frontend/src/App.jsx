@@ -15,15 +15,19 @@ import UpdatePlace from './places/pages/UpdatePlace.jsx';
 import Auth from './user/pages/Auth.jsx';
 import { AuthContext } from './shared/context/auth-context.js';
 
+let logoutTimer;
+
 function App() {
   const [token, setToken] = useState(false);
+  const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false);
 
   const login = useCallback((uid, token, expirationDate) => {
     setToken(token);
     setUserId(uid);
     const tokenExpirationDate =
-      expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
+      expirationDate || new Date(new Date().getTime() + 2000);
+    setTokenExpirationDate(tokenExpirationDate);
     localStorage.setItem(
       'userData',
       JSON.stringify({
@@ -36,8 +40,19 @@ function App() {
 
   const logout = useCallback(() => {
     setToken(null);
+    setTokenExpirationDate(null);
     setUserId(null);
   }, []);
+
+  useEffect(() => {
+    if (token && tokenExpirationDate) {
+      const remainingTime =
+        tokenExpirationDate.getTime() - new Date().getTime();
+      logoutTimer = setTimeout(logout, remainingTime);
+    } else {
+      clearTimeout(logoutTimer);
+    }
+  }, [token, logout, tokenExpirationDate]);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));

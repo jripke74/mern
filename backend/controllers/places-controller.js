@@ -40,7 +40,6 @@ const getPlacesByUserId = async (req, res, next) => {
   let userWithPlaces;
   try {
     userWithPlaces = await User.findById(userId).populate('places');
-    console.log(userWithPlaces);
   } catch (err) {
     const error = new HttpError(
       'Fetching places failed, please try again later.',
@@ -52,7 +51,7 @@ const getPlacesByUserId = async (req, res, next) => {
   // if (!places || places.length === 0) {
   if (!userWithPlaces || userWithPlaces.places.length === 0) {
     return next(
-      new Error('Could not find a places for the provided user id.', 404)
+      new HttpError('Could not find a places for the provided user id.', 404)
     );
   }
 
@@ -64,8 +63,8 @@ const getPlacesByUserId = async (req, res, next) => {
 };
 
 const createPlace = async (req, res, next) => {
-  const error = validationResult(req);
-  if (!error.isEmpty()) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
     return next(
       new HttpError('Invalid inputs passed, please check your data.', 422)
     );
@@ -140,6 +139,7 @@ const updatePlace = async (req, res, next) => {
 
   if (place.creator.toString() !== req.userData.userId) {
     const error = new HttpError('You are not allowed to edit this place.', 401);
+    return next(error);
   }
 
   place.title = title;
@@ -173,7 +173,7 @@ const deletePlace = async (req, res, next) => {
   }
 
   if (!place) {
-    const error = new HttpError('Coiuld not find place for this id', 500);
+    const error = new HttpError('Could not find place for this id', 404);
     return next(error);
   }
 
@@ -182,6 +182,7 @@ const deletePlace = async (req, res, next) => {
       'You are not allowed to delete this place.',
       401
     );
+    return next(error);
   }
 
   const imagePath = place.image;

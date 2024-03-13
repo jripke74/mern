@@ -6,7 +6,10 @@ import Button from '../../shared/components/FormElements/Button.jsx';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal.jsx';
 import ImageUpload from '../../shared/components/FormElements/ImageUpload.jsx';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner.jsx';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../util/validators';
+import {
+  VALIDATOR_REQUIRE,
+  VALIDATOR_MINLENGTH,
+} from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook.js';
 import { useHttpClient } from '../../shared/hooks/http-hook.js';
 import { AuthContext } from '../../shared/context/auth-context.js';

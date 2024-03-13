@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 
-import Input from '../../shared/components/FormElements/Input.jsx';
 import Card from '../../shared/components/UIElements/Card.jsx';
+import Input from '../../shared/components/FormElements/Input.jsx';
 import Button from '../../shared/components/FormElements/Button.jsx';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal.jsx';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner.jsx';
@@ -10,7 +10,7 @@ import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
-} from '../../util/validators.js';
+} from '../../shared/util/validators.js';
 import { useForm } from '../../shared/hooks/form-hook.js';
 import { useHttpClient } from '../../shared/hooks/http-hook.js';
 import { AuthContext } from '../../shared/context/auth-context.js';
@@ -76,7 +76,7 @@ export default function Auth() {
             'Content-Type': 'application/json',
           }
         );
-        auth.login(responseData.userId);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {}
     } else {
       try {
@@ -91,7 +91,7 @@ export default function Auth() {
           formData
         );
 
-        auth.login(responseData.userId);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {}
     }
   };

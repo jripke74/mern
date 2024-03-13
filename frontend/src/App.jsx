@@ -9,14 +9,15 @@ import Goals from './goals/components/Goals/Goals.jsx';
 import Users from './user/pages/Users.jsx';
 import NewPlace from './places/pages/NewPlace.jsx';
 import UserPlaces from './places/pages/UserPlaces.jsx';
-import MainNavigation from './shared/components/Navigation/MainNavigation.jsx';
 import UpdatePlace from './places/pages/UpdatePlace.jsx';
 import Auth from './user/pages/Auth.jsx';
+import MainNavigation from './shared/components/Navigation/MainNavigation.jsx';
 import { AuthContext } from './shared/context/auth-context.js';
 import { useAuth } from './shared/hooks/auth-hook.js';
 
 function App() {
   const { token, login, logout, userId } = useAuth();
+
   let routes;
 
   if (token) {

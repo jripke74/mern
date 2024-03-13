@@ -10,7 +10,6 @@ import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../util/validators';
 import { useForm } from '../../shared/hooks/form-hook.js';
 import { useHttpClient } from '../../shared/hooks/http-hook.js';
 import { AuthContext } from '../../shared/context/auth-context.js';
-
 import './PlaceForm.css';
 
 export default function NewPlace() {
@@ -80,7 +79,7 @@ export default function NewPlace() {
         <Input
           id="address"
           element="input"
-          label="address"
+          label="Address"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid address."
           onInput={inputHandler}

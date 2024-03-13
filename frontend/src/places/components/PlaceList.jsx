@@ -1,7 +1,6 @@
 import Card from '../../shared/components/UIElements/Card.jsx';
 import PlaceItem from './PlaceItem.jsx';
 import Button from '../../shared/components/FormElements/Button.jsx';
-
 import './PlaceList.css';
 
 export default function PlaceList({ items, onDeletePlace }) {

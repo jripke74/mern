@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
 import Button from './Button';
-
 import './ImageUpload.css';
 
 export default function ImageUpload({ id, center, onInput, errorText }) {

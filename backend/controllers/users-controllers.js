@@ -42,7 +42,7 @@ const signup = async (req, res, next) => {
 
   if (existingUser) {
     const error = new HttpError(
-      'User exists already, please lgoin instead.',
+      'User exists already, please login instead.',
       422
     );
     return next(error);
@@ -119,7 +119,7 @@ const login = async (req, res, next) => {
 
   let isValidPassword = false;
   try {
-    isValidPassword = await bcrypt(password.existingUser.password);
+    isValidPassword = await bcrypt.compare(password, existingUser.password);
   } catch (err) {
     const error = new HttpError(
       'Could not log you in, please check your credentials and try again.',

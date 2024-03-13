@@ -90,7 +90,7 @@ export default function PlaceItem({
       </Modal>
       <li className="place-item">
         <Card className="place-item__content">
-          {isLoading && <LoadingSpinner />}
+          {isLoading && <LoadingSpinner asOverlay />}
           <div className="place-item__image">
             <img src={`http://localhost:5003/${image}`} alt={title} />
           </div>

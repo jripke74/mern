@@ -12,7 +12,6 @@ async function getCoordsForAddress(address) {
       q: address,
     })
     .then((response) => {
-      // console.log('location.js', response.results);
       coordinates = {
         lat: response.results[0].coordinate.latitude,
         lng: response.results[0].coordinate.longitude,

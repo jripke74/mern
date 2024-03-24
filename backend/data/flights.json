@@ -19,5 +19,13 @@
     "aircraft": "Airbus A320",
     "distance": 12000,
     "intercontinental": false
+  },
+  ,
+  {
+    "departureAirport": "SEA",
+    "arrivalAirport": "GEG",
+    "aircraft": "Airbus A320",
+    "distance": 12000,
+    "intercontinental": false
   }
 ]

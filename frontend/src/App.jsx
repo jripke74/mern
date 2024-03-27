@@ -47,6 +47,9 @@ function App() {
         <Route path="/" exact>
           <Users />
         </Route>
+        <Route path="/tic-tac-toe">
+          <h1>Tic-Tac-Toe</h1>
+        </Route>
         <Route path="/goals" exact>
           <Goals />
         </Route>

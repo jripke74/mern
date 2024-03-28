@@ -11,6 +11,7 @@ import MainNavigation from './shared/components/Navigation/MainNavigation.jsx';
 import { AuthContext } from './shared/context/auth-context.js';
 import { useAuth } from './shared/hooks/auth-hook.js';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner.jsx';
+import Player from './components/Player.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -49,6 +50,15 @@ function App() {
         </Route>
         <Route path="/tic-tac-toe">
           <h1>Tic-Tac-Toe</h1>
+          <main>
+            <div id="game-container">
+              <ol id="players">
+                <Player name="Player 1" symbol="X" />
+                <Player name="Player 2" symbol="O" />
+              </ol>
+              GAME BOARD
+            </div>
+          </main>
         </Route>
         <Route path="/goals" exact>
           <Goals />

@@ -12,5 +12,12 @@
     "aircraft": "Airbus A320",
     "distance": 12000,
     "intercontinental": false
+  },
+  {
+    "departureAirport": "GEG",
+    "arrivalAirport": "TXL",
+    "aircraft": "Airbus A320",
+    "distance": 12000,
+    "intercontinental": false
   }
 ]

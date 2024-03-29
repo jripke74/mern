@@ -12,6 +12,7 @@ import { AuthContext } from './shared/context/auth-context.js';
 import { useAuth } from './shared/hooks/auth-hook.js';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner.jsx';
 import Player from './components/Player.jsx';
+import GameBoard from './components/GameBoard.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -56,7 +57,7 @@ function App() {
                 <Player name="Player 1" symbol="X" />
                 <Player name="Player 2" symbol="O" />
               </ol>
-              GAME BOARD
+              <GameBoard />
             </div>
           </main>
         </Route>

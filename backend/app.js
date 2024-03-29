@@ -47,10 +47,20 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || 'An unkown error occurred!' });
 });
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  app.get('*', (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+    )
+  );
+} else {
+  app.get('/', (req, res) => res.send('Please set to production'));
+}
+
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.mxuwfw1.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
-  )
+  .connect(`${process.env.DB_SERVER}`)
   .then(() => {
     app.listen(process.env.PORT || 5003);
   })

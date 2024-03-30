@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import {
   BrowserRouter as Routes,
   Route,
@@ -22,6 +22,11 @@ const Auth = React.lazy(() => import('./user/pages/Auth.jsx'));
 
 function App() {
   const { token, login, logout, userId } = useAuth();
+  const [activePlayer, setActivePlayer] = useState('X');
+
+  function handleSelectSquare() {
+    setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X'));
+  }
 
   let routes;
 
@@ -53,11 +58,22 @@ function App() {
           <h1>Tic-Tac-Toe</h1>
           <main>
             <div id="game-container">
-              <ol id="players">
-                <Player name="Player 1" symbol="X" />
-                <Player name="Player 2" symbol="O" />
+              <ol id="players" className="highLight-player">
+                <Player
+                  initialName="Player 1"
+                  symbol="X"
+                  isActive={activePlayer === 'X'}
+                />
+                <Player
+                  initialName="Player 2"
+                  symbol="O"
+                  isActive={activePlayer === 'O'}
+                />
               </ol>
-              <GameBoard />
+              <GameBoard
+                onSelectSquare={handleSelectSquare}
+                activePlayerSymbol={activePlayer}
+              />
             </div>
           </main>
         </Route>

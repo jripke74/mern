@@ -13,6 +13,7 @@ import { useAuth } from './shared/hooks/auth-hook.js';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner.jsx';
 import Player from './components/Player.jsx';
 import GameBoard from './components/GameBoard.jsx';
+import Log from './components/Log.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -22,10 +23,12 @@ const Auth = React.lazy(() => import('./user/pages/Auth.jsx'));
 
 function App() {
   const { token, login, logout, userId } = useAuth();
+  const [gameTurns, setGameTurns] = useState([]);
   const [activePlayer, setActivePlayer] = useState('X');
 
   function handleSelectSquare() {
     setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X'));
+    setGameTurns();
   }
 
   let routes;
@@ -75,6 +78,7 @@ function App() {
                 activePlayerSymbol={activePlayer}
               />
             </div>
+            <Log />
           </main>
         </Route>
         <Route path="/goals" exact>

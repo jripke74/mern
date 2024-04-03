@@ -14,6 +14,7 @@ import LoadingSpinner from './shared/components/UIElements/LoadingSpinner.jsx';
 import Player from './components/Player.jsx';
 import GameBoard from './components/GameBoard.jsx';
 import Log from './components/Log.jsx';
+import { WINNING_COMBINATIONS } from './winning-combinations.js';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));

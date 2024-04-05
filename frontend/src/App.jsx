@@ -14,6 +14,7 @@ import LoadingSpinner from './shared/components/UIElements/LoadingSpinner.jsx';
 import Player from './components/Player.jsx';
 import GameBoard from './components/GameBoard.jsx';
 import Log from './components/Log.jsx';
+import GameOver from './components/GameOver.jsx';
 import { WINNING_COMBINATIONS } from './winning-combinations.js';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
@@ -73,6 +74,8 @@ function App() {
     }
   }
 
+  const hasDraw = gameTurns.length === 9 && !winner;
+
   function handleSelectSquare(rowIndex, colIndex) {
     // setActivePlayer((curActivePlayer) => (curActivePlayer === 'X' ? 'O' : 'X'));
     setGameTurns((prevTurns) => {
@@ -129,7 +132,7 @@ function App() {
                   isActive={activePlayer === 'O'}
                 />
               </ol>
-              {winner && <p>You won, {winner}!</p>}
+              {(winner || hasDraw) && <GameOver winner={winner} />}
               <GameBoard
                 onSelectSquare={handleSelectSquare}
                 board={gameBoard}

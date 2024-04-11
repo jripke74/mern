@@ -1,4 +1,4 @@
-import logo from '../assets/investment-calculator-logo.png';
+import logo from '../assets/investment-calculator-logo.png'; // cmt
 
 export default function Header() {
   return (

@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
 
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: 'Roboto Slab', sans-serif;
-  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+  /* line-height: 1.5;
 
   color: #ebe7ef;
 
@@ -14,15 +14,18 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; */
 }
 
 body {
-  background: radial-gradient(
-      circle at top,
+  margin: 0;
+  background-color: #4d4d4d;
+}
+
+main.tic-tac-toe {
+  background: radial-gradient(circle at top,
       rgba(241, 210, 70, 0.98),
-      rgba(250, 176, 103, 0.87)
-    ),
+      rgba(250, 176, 103, 0.87)),
     url('bg-pattern-dark.png');
   background-repeat: repeat;
   background-size: 100% 100%, 30% 30%, 100% 100%;
@@ -40,11 +43,39 @@ header img {
   filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
 }
 
-h1 {
+/* h1 {
   font-family: 'Caprasimo', cursive;
   font-size: 3rem;
   margin: 0 auto 3rem auto;
   color: #3f3b00;
+} */
+
+.slide-in-left-enter {
+  transform: translateX(-100%);
+}
+
+.slide-in-left-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.slide-in-left-exit {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.slide-in-left-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 200ms;
+}
+
+.center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #game-container {
@@ -290,6 +321,7 @@ ol {
     opacity: 0;
     transform: translateX(-30%);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -300,9 +332,11 @@ ol {
   0% {
     color: #e1dec7;
   }
+
   50% {
     color: #9f9d83;
   }
+
   100% {
     color: #e1dec7;
   }
@@ -312,9 +346,11 @@ ol {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
+
   100% {
     transform: scale(1);
   }
@@ -325,10 +361,12 @@ ol {
     border-color: #f6e35a;
     box-shadow: 0 0 0 0 rgba(246, 227, 90, 0.4);
   }
+
   50% {
     border-color: #f8c031;
     box-shadow: 0 0 0 0.5rem rgba(248, 165, 49, 0);
   }
+
   100% {
     border-color: #f6e35a;
     box-shadow: 0 0 0 0 rgba(246, 227, 90, 0);
@@ -341,10 +379,12 @@ ol {
     transform: scale(0);
     opacity: 0;
   }
+
   80% {
     transform: scale(1.1);
     opacity: 1;
   }
+
   100% {
     transform: scale(1);
   }

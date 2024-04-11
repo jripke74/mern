@@ -15,6 +15,7 @@ import Player from './components/Player.jsx';
 import GameBoard from './components/GameBoard.jsx';
 import Log from './components/Log.jsx';
 import GameOver from './components/GameOver.jsx';
+import Header from './components/Header.jsx';
 import { WINNING_COMBINATIONS } from './winning-combinations.js';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
@@ -144,9 +145,12 @@ function App() {
         <Route path="/" exact>
           <Users />
         </Route>
+        <Route path="/investment-calculator">
+          <Header />
+        </Route>
         <Route path="/tic-tac-toe">
           <h1>Tic-Tac-Toe</h1>
-          <main>
+          <main className="tic-tac-toe">
             <div id="game-container">
               <ol id="players" className="highLight-player">
                 <Player

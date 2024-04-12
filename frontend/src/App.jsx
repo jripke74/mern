@@ -17,6 +17,7 @@ import Log from './components/Log.jsx';
 import GameOver from './components/GameOver.jsx';
 import Header from './components/Header.jsx';
 import { WINNING_COMBINATIONS } from './winning-combinations.js';
+import UserInput from './components/UserInput.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -147,6 +148,7 @@ function App() {
         </Route>
         <Route path="/investment-calculator">
           <Header />
+          <UserInput />
         </Route>
         <Route path="/tic-tac-toe">
           <h1>Tic-Tac-Toe</h1>

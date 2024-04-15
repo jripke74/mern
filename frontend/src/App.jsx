@@ -18,6 +18,7 @@ import GameOver from './components/GameOver.jsx';
 import Header from './components/Header.jsx';
 import { WINNING_COMBINATIONS } from './winning-combinations.js';
 import UserInput from './components/UserInput.jsx';
+import Results from './components/Results.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -86,6 +87,21 @@ function App() {
   const [players, setPlayers] = useState(PLAYERS);
   const { token, login, logout, userId } = useAuth();
   const [gameTurns, setGameTurns] = useState([]);
+  const [userInput, setUserInput] = useState({
+    initialInvestment: 10000,
+    annualInvestment: 1200,
+    expectedReturn: 6,
+    duration: 10,
+  });
+
+  function handleChange(inputIdentifier, newValue) {
+    setUserInput((prevUserInput) => {
+      return {
+        ...prevUserInput,
+        [inputIdentifier]: newValue,
+      };
+    });
+  }
 
   const activePlayer = derivedActivePlayer(gameTurns);
   const gameBoard = derivedGameBoard(gameTurns);
@@ -148,7 +164,8 @@ function App() {
         </Route>
         <Route path="/investment-calculator">
           <Header />
-          <UserInput />
+          <UserInput userInput={userInput} onChange={handleChange} />
+          <Results input={userInput} />
         </Route>
         <Route path="/tic-tac-toe">
           <h1>Tic-Tac-Toe</h1>

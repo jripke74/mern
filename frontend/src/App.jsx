@@ -94,6 +94,8 @@ function App() {
     duration: 10,
   });
 
+  const inputIsValid = userInput.duration >= 1;
+
   function handleChange(inputIdentifier, newValue) {
     setUserInput((prevUserInput) => {
       return {
@@ -165,7 +167,12 @@ function App() {
         <Route path="/investment-calculator">
           <Header />
           <UserInput userInput={userInput} onChange={handleChange} />
-          <Results input={userInput} />
+          {!inputIsValid && (
+            <p className="center">
+              Plaease enter a duration greater than zeror.
+            </p>
+          )}
+          {inputIsValid && <Results input={userInput} />}
         </Route>
         <Route path="/tic-tac-toe">
           <h1>Tic-Tac-Toe</h1>

@@ -171,7 +171,7 @@ const deletePlace = async (req, res, next) => {
   }
 
   if (!place) {
-    const error = new HttpError('Could not find place for this id', 404);
+    const error = new HttpError('Could not find place for this id.', 404);
     return next(error);
   }
 

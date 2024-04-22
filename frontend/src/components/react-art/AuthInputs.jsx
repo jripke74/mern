@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './AuthInputs.css';
 
 export default function AuthInputs() {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -46,7 +47,9 @@ export default function AuthInputs() {
         <button type="button" className="text-button">
           Create a new account
         </button>
-        <button className='button' onClick={handleLogin}>Sign In</button>
+        <button className="button" onClick={handleLogin}>
+          Sign In
+        </button>
       </div>
     </div>
   );

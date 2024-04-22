@@ -19,6 +19,8 @@ import Header from './components/tic-tac-toe/Header.jsx';
 import { WINNING_COMBINATIONS } from './util/winning-combinations.js';
 import UserInput from './components/tic-tac-toe/UserInput.jsx';
 import Results from './components/tic-tac-toe/Results.jsx';
+import AuthInputs from './components/react-art/AuthInputs.jsx';
+import HeaderArt from './components/react-art/Header.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -163,6 +165,13 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/react-art">
+          <HeaderArt>
+            <main>
+              <AuthInputs />
+            </main>
+          </HeaderArt>
         </Route>
         <Route path="/investment-calculator">
           <Header />

@@ -167,11 +167,10 @@ function App() {
           <Users />
         </Route>
         <Route path="/react-art">
-          <HeaderArt>
-            <main>
-              <AuthInputs />
-            </main>
-          </HeaderArt>
+          <HeaderArt />
+          <main>
+            <AuthInputs />
+          </main>
         </Route>
         <Route path="/investment-calculator">
           <Header />

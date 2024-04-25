@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => res.send('Please set to production or dev'));
 }
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   const error = new HttpError('Could not find this route.', 404);
   throw error;
 });

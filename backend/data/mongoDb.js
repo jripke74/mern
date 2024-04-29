@@ -53,3 +53,24 @@ db.posts.insertOne({
     { text: 'I this post!', author: ObjectId('660200968a598212be926486') },
   ],
 });
+
+// use companyData;
+db.companies.insertOne({ name: 'Fast Burgers Foods', stock: 132, _id: 1 });
+db.companies.insertMany([
+  { name: 'Smart Burgers', stock: 224, _id: 2 },
+  { name: 'High Quality Beef', stock: 187, _id: 3 },
+]);
+
+db.companies.find();
+
+db.companies.insertMany(
+  [
+    { name: 'Fresh Shakes', stock: 98, _id: 1 },
+    { name: 'Awesome Burgers Inc.', stock: 134, _id: 4 },
+  ],
+  { ordered: false }
+);
+db.companies.insertOne(
+  { name: 'Fresh Produce', stock: 218, _id: 5 },
+  { writeConcern: { w: 1, j: true } }
+);

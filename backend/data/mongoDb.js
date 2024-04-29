@@ -74,3 +74,5 @@ db.companies.insertOne(
   { name: 'Fresh Produce', stock: 218, _id: 5 },
   { writeConcern: { w: 1, j: true } }
 );
+
+// mongoimport tv-shows.json -d movieData -c movies --jsonArray --drop // use to import data

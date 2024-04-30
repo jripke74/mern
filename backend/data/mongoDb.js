@@ -76,3 +76,7 @@ db.companies.insertOne(
 );
 
 // mongoimport tv-shows.json -d movieData -c movies --jsonArray --drop // use to import data
+
+db.movies.find({ 'rating.average': { $gt: 7 } });
+db.movies.find({ genres: 'Drama' });
+db.movies.find({ genres: ['Drama'] }); // finds only genres with only "Drama" in array

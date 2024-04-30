@@ -80,3 +80,5 @@ db.companies.insertOne(
 db.movies.find({ 'rating.average': { $gt: 7 } });
 db.movies.find({ genres: 'Drama' });
 db.movies.find({ genres: ['Drama'] }); // finds only genres with only "Drama" in array
+db.movies.find({ runtime: { $in: [30, 42] } }); // finds only runtime of 30 and 42
+db.movies.find({ runtime: { $nin: [30, 42] } }); // finds every runtime except 30 and 42

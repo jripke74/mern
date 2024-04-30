@@ -84,3 +84,4 @@
 {"t":{"$date":"2024-04-29T10:48:39.114-07:00"},"s":"W",  "c":"NETWORK",  "id":4615610, "ctx":"conn13","msg":"Failed to check socket connectivity","attr":{"error":{"code":6,"codeName":"HostUnreachable","errmsg":"peekASIOStream :: caused by :: Connection closed by peer"}}}
 {"t":{"$date":"2024-04-29T10:48:39.115-07:00"},"s":"I",  "c":"-",        "id":20883,   "ctx":"conn13","msg":"Interrupted operation as its client disconnected","attr":{"opId":114637}}
 {"t":{"$date":"2024-04-29T10:48:39.115-07:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn13","msg":"Connection ended","attr":{"remote":"127.0.0.1:53019","uuid":{"uuid":{"$uuid":"c1e5ea4d-4cdc-495e-b0af-df8e4549d462"}},"connectionId":13,"connectionCount":12}}
+{"t":{"$date":"2024-04-29T11:26:59.004-07:00"},"s":"I",  "c":"QUERY",    "id":20528,   "ctx":"LogicalSessionCacheRefresh","msg":"Killing cursor as part of killing session(s)","attr":{"cursorId":108053491941214281}}

@@ -82,3 +82,15 @@ db.movies.find({ genres: 'Drama' });
 db.movies.find({ genres: ['Drama'] }); // finds only genres with only "Drama" in array
 db.movies.find({ runtime: { $in: [30, 42] } }); // finds only runtime of 30 and 42
 db.movies.find({ runtime: { $nin: [30, 42] } }); // finds every runtime except 30 and 42
+db.movies.find({
+  $or: [{ 'rating.average': { $lt: 5 } }, { 'rating.average': { $gt: 9.3 } }],
+});
+db.movies.find({
+  $nor: [{ 'rating.average': { $lt: 5 } }, { 'rating.average': { $gt: 9.3 } }],
+});
+db.movies.find({
+  $and: [{ 'rating.average': { $gt: 9 } }, { genres: 'Drama' }],
+}); // doese the same as below code
+db.movies.find({ 'rating.average': { $gt: 9 }, 'genres': 'Drama' }); // doese the same as above code
+db.movies.find({ genres: 'Drama', genres: 'Horror' }); // only returns genres: "Horror"
+db.movies.find({ $and: [{ genres: 'Drama' }, { genres: 'Horror' }] }); // returns bothe Drama and Horror becouse of $and

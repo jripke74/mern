@@ -127,3 +127,23 @@ db.users.insertOne({
   age: null,
 });
 db.users.find({ age: { $exists: false } }); // finds age with null
+db.users.find({ phone: { $type: 'number' } });
+db.users.find({ phone: { $type: 'double' } });
+db.users.find({ phone: { $type: ['double', 'string'] } });
+db.movies.find({ summary: 'musical' }); // doesn't work wit paragraphs
+db.movies.find({ summary: { $regex: /musical/ } }); // finds all text with musical in it
+db.sales.find({ $expr: { $gt: ['$volume', '$target'] } });
+b.sales.find({
+  $expr: {
+    $gt: [
+      {
+        $cond: {
+          if: { $gte: ['$volume', 190] },
+          then: { $subtract: ['$volume', 10] },
+          else: '$volume',
+        },
+      },
+      '$target',
+    ],
+  },
+});

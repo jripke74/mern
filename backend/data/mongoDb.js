@@ -94,3 +94,36 @@ db.movies.find({
 db.movies.find({ 'rating.average': { $gt: 9 }, 'genres': 'Drama' }); // doese the same as above code
 db.movies.find({ genres: 'Drama', genres: 'Horror' }); // only returns genres: "Horror"
 db.movies.find({ $and: [{ genres: 'Drama' }, { genres: 'Horror' }] }); // returns bothe Drama and Horror becouse of $and
+db.movies.find({ runtime: { $not: { $eq: 60 } } }); // count 70
+db.movies.find({ runtime: { $ne: 60 } }); // count 70
+db.users.insertMany([
+  {
+    name: 'Max',
+    hobbies: [
+      { title: 'Sports', frequency: 3 },
+      { title: 'Cooking', frequency: 6 },
+    ],
+    phone: 0131782734,
+  },
+  {
+    name: 'Manuel',
+    hobbies: [
+      { title: 'Cooking', frequency: 5 },
+      { title: 'Cars', frequency: 2 },
+    ],
+    phone: '012177972',
+    age: 30,
+  },
+]);
+db.users.find({ age: { $exists: true } });
+db.users.find({ age: { $exists: true, $gt: 30 } });
+db.users.insertOne({
+  name: 'Anne',
+  hobbies: [
+    { title: 'Sports', frequency: 2 },
+    { title: 'Yoga', frequency: 3 },
+  ],
+  phone: '80811987291',
+  age: null,
+});
+db.users.find({ age: { $exists: false } }); // finds age with null

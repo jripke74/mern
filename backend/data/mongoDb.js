@@ -153,3 +153,36 @@ db.movieStarts.find({
 });
 db.movieStarts.find({ $or: [{ genre: 'drama' }, { genre: 'action' }] });
 db.movieStarts.find({ $and: [{ genre: 'drama' }, { genre: 'action' }] });
+db.movieStarts.find({ $expr: { $gt: ['$visitors', '$expectedVisitors'] } });
+[
+  {
+    _id: ObjectId('6633a9068758a736063b3dc8'),
+    title: 'Teach me if you can',
+    meta: { rating: 8.5, aired: 2014, runtime: 90 },
+    visitors: 590378,
+    expectedVisitors: 500000,
+    genre: ['action', 'thriller'],
+  },
+];
+db.users.find({ 'hobbies.title': 'Sports' });
+[
+  {
+    _id: ObjectId('66327ca72933198031ffaaf6'),
+    name: 'Max',
+    hobbies: [
+      { title: 'Sports', frequency: 3 },
+      { title: 'Cooking', frequency: 6 },
+    ],
+    phone: 131782734,
+  },
+  {
+    _id: ObjectId('663285df2933198031ffaaf8'),
+    name: 'Anne',
+    hobbies: [
+      { title: 'Sports', frequency: 2 },
+      { title: 'Yoga', frequency: 3 },
+    ],
+    phone: '80811987291',
+    age: null,
+  },
+];

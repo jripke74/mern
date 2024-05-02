@@ -147,3 +147,9 @@ b.sales.find({
     ],
   },
 });
+db.movieStarts.find({
+  'meta.rating': { $gt: 9.2 },
+  'meta. runtime': { $lt: 100 },
+});
+db.movieStarts.find({ $or: [{ genre: 'drama' }, { genre: 'action' }] });
+db.movieStarts.find({ $and: [{ genre: 'drama' }, { genre: 'action' }] });

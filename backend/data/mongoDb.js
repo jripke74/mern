@@ -186,3 +186,12 @@ db.users.find({ 'hobbies.title': 'Sports' });
     age: null,
   },
 ];
+db.users.insertOne({ name: 'Chris', hobbies: ['Sports', 'Cooking', 'Hiking'] });
+db.users.find({ hobbies: { $size: 3 } });
+[
+  {
+    _id: ObjectId('6633d036f1e15831a8897f05'),
+    name: 'Chris',
+    hobbies: ['Sports', 'Cooking', 'Hiking'],
+  },
+];

@@ -320,3 +320,11 @@ db.exmoviestarts.find({ ratings: { $elemMatch: { $gt: 8, $lt: 10 } } });
     ratings: [10, 9],
   },
 ];
+
+const dataCursor = db.movies.find();
+dataCursor.next();
+dataCursor.forEach((doc) => {
+  printjson(doc);
+}); // goes through all documents
+
+dataCursor.hasNext(); // returns true or false

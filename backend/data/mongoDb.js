@@ -223,3 +223,65 @@ db.movieStarts.find({ genre: { $all: ['action', 'thriller'] } });
     genre: ['thriller', 'action'],
   },
 ];
+
+db.users.find({
+  $and: [{ 'hobbies.title': 'Sports' }, { 'hobbies.frequency': { $gte: 2 } }],
+});
+[
+  ({
+    _id: ObjectId('66327ca72933198031ffaaf6'),
+    name: 'Max',
+    hobbies: [
+      { title: 'Sports', frequency: 3 },
+      { title: 'Cooking', frequency: 6 },
+    ],
+    phone: 131782734,
+  },
+  {
+    _id: ObjectId('663285df2933198031ffaaf8'),
+    name: 'Anne',
+    hobbies: [
+      { title: 'Sports', frequency: 2 },
+      { title: 'Yoga', frequency: 3 },
+    ],
+    phone: '80811987291',
+    age: null,
+  }),
+];
+
+db.users.find({
+  hobbies: { $elemMatch: { title: 'Sports', frequency: { $gte: 3 } } },
+});
+[
+  {
+    _id: ObjectId('66327ca72933198031ffaaf6'),
+    name: 'Max',
+    hobbies: [
+      { title: 'Sports', frequency: 3 },
+      { title: 'Cooking', frequency: 6 },
+    ],
+    phone: 131782734,
+  },
+];
+
+db.exmoviestarts.find({ genre: { $size: 2 } });
+[
+  {
+    _id: ObjectId('66351806be429f0a14d62581'),
+    title: 'Supercharged Teaching',
+    meta: { rating: 9.3, aired: 2016, runtime: 60 },
+    visitors: 370000,
+    expectedVisitors: 1000000,
+    genre: ['thriller', 'action'],
+    ratings: [10, 9, 9],
+  },
+  {
+    _id: ObjectId('66351806be429f0a14d62582'),
+    title: 'Teach me if you can',
+    meta: { rating: 8, aired: 2014, runtime: 90 },
+    visitors: 590378,
+    expectedVisitors: 500000,
+    genre: ['action', 'thriller'],
+    ratings: [8, 8],
+  },
+];

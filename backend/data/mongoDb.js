@@ -328,3 +328,7 @@ dataCursor.forEach((doc) => {
 }); // goes through all documents
 
 dataCursor.hasNext(); // returns true or false
+
+db.movies.find().sort({ 'ratting.average': 1 }); // 1 assending -1 descending
+
+db.movies.find().sort({ 'ratting.average': 1, 'runtime': -1 }); // 1 assending -1 descending

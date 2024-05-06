@@ -332,3 +332,82 @@ dataCursor.hasNext(); // returns true or false
 db.movies.find().sort({ 'ratting.average': 1 }); // 1 assending -1 descending
 
 db.movies.find().sort({ 'ratting.average': 1, 'runtime': -1 }); // 1 assending -1 descending
+
+db.movies
+  .find()
+  .sort({ 'rating.average': 1, 'runtime': -1 })
+  .sort({ 'rating.average': 1 })
+  .skip(10);
+
+db.movies
+  .find()
+  .sort({ 'rating.average': 1, 'runtime': -1 })
+  .sort({ 'rating.average': 1 })
+  .skip(10)
+  .limit(10);
+
+db.movies.find({ genres: 'Drama' }, { 'genres.$': 1 });
+[
+  { _id: ObjectId('662fdd76b86188abdbab1e51'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e52'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e53'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e54'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e55'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e56'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e57'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e58'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e59'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e5b'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e5c'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e5d'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e5e'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e5f'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e60'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e62'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e65'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e67'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e68'), genres: ['Drama'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e69'), genres: ['Drama'] },
+];
+
+db.movies.find({ genres: { $all: ['Drama', 'Horror'] } }, { 'genres.$': 1 });
+[
+  { _id: ObjectId('662fdd76b86188abdbab1e54'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e58'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e59'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e5d'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e70'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e71'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e76'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e7b'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1e8f'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1ee4'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1eea'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1f04'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1f09'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1f1b'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1f1f'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1f26'), genres: ['Horror'] },
+  { _id: ObjectId('662fdd76b86188abdbab1f35'), genres: ['Horror'] },
+];
+
+db.movies.find(
+  { genres: 'Drama' },
+  { genres: { $elemMatch: { $eq: 'Horror' } } }
+);
+
+db.movies
+  .find({ 'rating.average': { $gt: 9 } }, { genres: { $slice: 2 } })
+  .count(); // 7
+db.movies
+  .find({ 'rating.average': { $gt: 9 } }, { genres: { $slice: 1 }, name: 1 })
+  .count(); // 7
+7;
+
+movieData >
+  db.movies
+    .find(
+      { 'rating.average': { $gt: 9 } },
+      { genres: { $slice: [1, 2] }, name: 1 }
+    )
+    .count(); // 7

@@ -12,6 +12,7 @@ import { AuthContext } from './shared/context/auth-context.js';
 import { useAuth } from './shared/hooks/auth-hook.js';
 import LoadingSpinner from './shared/components/UIElements/LoadingSpinner.jsx';
 import Player from './components/tic-tac-toe/Player.jsx';
+import FinalPlayer from './components/final-countdown/FinalPlayer.jsx';
 import GameBoard from './components/tic-tac-toe/GameBoard.jsx';
 import Log from './components/tic-tac-toe/Log.jsx';
 import GameOver from './components/tic-tac-toe/GameOver.jsx';
@@ -165,6 +166,16 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/final-countdown">
+          <header>
+            <h1>
+              The <em>Almost</em> Final Countdown
+            </h1>
+            <p>Stop the timer once you estimate that time is (almost) up</p>
+          </header>
+          <FinalPlayer />
+          <div id="challenges"></div>
         </Route>
         <Route path="/react-art">
           <HeaderArt />

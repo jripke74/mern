@@ -22,6 +22,7 @@ import UserInput from './components/tic-tac-toe/UserInput.jsx';
 import Results from './components/tic-tac-toe/Results.jsx';
 import AuthInputs from './components/react-art/AuthInputs.jsx';
 import HeaderArt from './components/react-art/Header.jsx';
+import TimerChalleng from './components/final-countdown/TimerChallenge.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -175,7 +176,12 @@ function App() {
             <p>Stop the timer once you estimate that time is (almost) up</p>
           </header>
           <FinalPlayer />
-          <div id="challenges"></div>
+          <div id="challenges">
+            <TimerChalleng title="Easy" targetTime={1} />
+            <TimerChalleng title="Not Easy" targetTime={5} />
+            <TimerChalleng title="Getting tough" targetTime={10} />
+            <TimerChalleng title="Pros only" targetTime={15} />
+          </div>
         </Route>
         <Route path="/react-art">
           <HeaderArt />

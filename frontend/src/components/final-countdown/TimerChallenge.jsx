@@ -3,8 +3,6 @@ import { useState, useRef } from 'react';
 import classes from './TimerChallenge.module.css';
 import ResultModal from './ResultModal';
 
-// let timer;
-
 export default function TimerChalleng({ title, targetTime }) {
   const timer = useRef();
   const dialog = useRef();

@@ -474,3 +474,5 @@ db.users.find({ name: 'Chris' });
     phone: 5093488956,
   },
 ];
+
+db.users.updateMany({ isSporty: true }, { $unset: { phone: '' } });

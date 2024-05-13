@@ -433,3 +433,25 @@ db.users.updateOne(
   { _id: ObjectId('6633d036f1e15831a8897f05') },
   { $set: { age: 23, phone: 5093488956 } }
 );
+
+db.users.updateOne({ name: 'Manuel' }, { $inc: { age: 1 } });
+
+db.users.updateOne(
+  { name: 'Manuel' },
+  { $inc: { age: 1 }, $set: { isSporty: false } }
+);
+
+db.users.find({ name: 'Manuel' });
+[
+  {
+    _id: ObjectId('66327ca72933198031ffaaf7'),
+    name: 'Manuel',
+    hobbies: [
+      { title: 'Cooking', frequency: 5 },
+      { title: 'Cars', frequency: 2 },
+    ],
+    phone: '012177972',
+    age: 33,
+    isSporty: false,
+  },
+];

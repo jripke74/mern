@@ -455,3 +455,22 @@ db.users.find({ name: 'Manuel' });
     isSporty: false,
   },
 ];
+
+db.users.updateOne({ name: 'Chris' }, { $min: { age: 20 } });
+db.users.updateOne({ name: 'Chris' }, { $max: { age: 30 } });
+
+db.users.updateOne({ name: 'Chris' }, { $mul: { age: 1.1 } });
+db.users.find({ name: 'Chris' });
+[
+  {
+    _id: ObjectId('6633d036f1e15831a8897f05'),
+    name: 'Chris',
+    hobbies: [
+      { title: 'Sports', frequency: 5 },
+      { title: 'Hiking', frequency: 1 },
+    ],
+    isSporty: true,
+    age: 24.200000000000003,
+    phone: 5093488956,
+  },
+];

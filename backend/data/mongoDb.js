@@ -428,3 +428,8 @@ db.users.updateMany(
   { 'hobbies.title': 'Sports' },
   { $set: { isSporty: true } }
 );
+
+db.users.updateOne(
+  { _id: ObjectId('6633d036f1e15831a8897f05') },
+  { $set: { age: 23, phone: 5093488956 } }
+);

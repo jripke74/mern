@@ -411,3 +411,20 @@ movieData >
       { genres: { $slice: [1, 2] }, name: 1 }
     )
     .count(); // 7
+
+db.users.updateOne(
+  { _id: ObjectId('6633d036f1e15831a8897f05') },
+  {
+    $set: {
+      hobbies: [
+        { title: 'Sports', frequency: 5 },
+        { title: 'Hiking', frequency: 1 },
+      ],
+    },
+  }
+);
+
+db.users.updateMany(
+  { 'hobbies.title': 'Sports' },
+  { $set: { isSporty: true } }
+);

@@ -476,3 +476,5 @@ db.users.find({ name: 'Chris' });
 ];
 
 db.users.updateMany({ isSporty: true }, { $unset: { phone: '' } });
+
+db.users.updateMany({}, { $rename: { age: 'totalAge' } });

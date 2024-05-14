@@ -490,3 +490,13 @@ db.users.updateOne(
   },
   { upsert: true }
 );
+
+db.sports.updateMany(
+  {},
+  { $set: { title: 'Football', requiresTeam: true } },
+  { upsert: true }
+);
+
+db.sports.updateMany({ requiresTeam: true }, { $set: { minPlayers: 11 } });
+
+db.sports.updateMany({ requiresTeam: true }, { $inc: { minPlayers: 10 } });

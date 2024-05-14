@@ -565,3 +565,66 @@ db.users.updateMany(
   { hobbies: { $elemMatch: { title: 'Sports', frequency: { $gte: 3 } } } },
   { $set: { 'hobbies.$.highFrequency': true } }
 );
+
+db.users.find({ 'hobbies.frequency': { $gt: 2 } });
+[
+  {
+    _id: ObjectId('66327ca72933198031ffaaf6'),
+    name: 'Max',
+    hobbies: [
+      { title: 'Sports', frequency: 3, highFrequency: true },
+      { title: 'Cooking', frequency: 6 },
+    ],
+    isSporty: true,
+    hobbis: { 0: { highFrequency: true } },
+  },
+  {
+    _id: ObjectId('66327ca72933198031ffaaf7'),
+    name: 'Manuel',
+    hobbies: [
+      { title: 'Cooking', frequency: 5 },
+      { title: 'Cars', frequency: 2 },
+    ],
+    phone: '012177972',
+    isSporty: false,
+    totalAge: 33,
+  },
+  {
+    _id: ObjectId('663285df2933198031ffaaf8'),
+    name: 'Anne',
+    hobbies: [
+      { title: 'Sports', frequency: 2 },
+      { title: 'Yoga', frequency: 3 },
+    ],
+    isSporty: true,
+    totalAge: null,
+  },
+  {
+    _id: ObjectId('6633d036f1e15831a8897f05'),
+    name: 'Chris',
+    hobbies: [
+      { title: 'Sports', frequency: 5, highFrequency: true },
+      { title: 'Hiking', frequency: 1 },
+    ],
+    isSporty: true,
+    totalAge: 24.200000000000003,
+    hobbis: { 0: { highFrequency: true } },
+  },
+  {
+    _id: ObjectId('66438bbb9b9da3d1dc14a41b'),
+    name: 'Jeff',
+    age: 32,
+    hobbies: [{ title: 'Photography', frequency: 32 }],
+    isSporty: true,
+  },
+];
+
+db.users.updateMany(
+  { 'hobbies.frequency': { $gt: 2 } },
+  { $set: { 'hobbies.$.goodFrequency': true } }
+);
+
+db.users.updateMany(
+  { totalAge: { $gt: 30 } },
+  { $inc: { 'hobbies.$[].frequency': -1 } }
+);

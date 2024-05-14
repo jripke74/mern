@@ -478,3 +478,15 @@ db.users.find({ name: 'Chris' });
 db.users.updateMany({ isSporty: true }, { $unset: { phone: '' } });
 
 db.users.updateMany({}, { $rename: { age: 'totalAge' } });
+
+db.users.updateOne(
+  { name: 'Jeff' },
+  {
+    $set: {
+      age: 32,
+      hobbies: [{ title: 'Photography', frequency: 32 }],
+      isSporty: true,
+    },
+  },
+  { upsert: true }
+);

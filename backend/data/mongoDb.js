@@ -628,3 +628,9 @@ db.users.updateMany(
   { totalAge: { $gt: 30 } },
   { $inc: { 'hobbies.$[].frequency': -1 } }
 );
+
+db.users.updateMany(
+  { 'hobbies.frequency': { $gt: 2 } },
+  { $set: { 'hobbies.$[el].goodFrequency': false } },
+  { arrayFilters: [{ 'el.frequency': { $gt: 2 } }] }
+);

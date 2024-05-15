@@ -634,3 +634,43 @@ db.users.updateMany(
   { $set: { 'hobbies.$[el].goodFrequency': false } },
   { arrayFilters: [{ 'el.frequency': { $gt: 2 } }] }
 );
+
+db.users.udateOne(
+  { name: 'Jeff' },
+  { $push: { hobbies: { title: 'Sports', frequency: 2 } } }
+);
+
+db.users.updateOne(
+  { name: 'Jeff' },
+  {
+    $push: {
+      hobbies: {
+        $each: [
+          { title: 'Good Wine', frequency: 1 },
+          { title: 'Hiking', frequency: 2 },
+        ],
+        $sort: { frequency: -1 },
+      },
+    },
+  }
+);
+user > db.users.find({ name: 'Jeff' });
+[
+  {
+    _id: ObjectId('66438bbb9b9da3d1dc14a41b'),
+    name: 'Jeff',
+    age: 32,
+    hobbies: [
+      {
+        title: 'Photography',
+        frequency: 32,
+        gooFrequency: true,
+        goodFrequency: false,
+      },
+      { title: 'Sports', frequency: 2 },
+      { title: 'Hiking', frequency: 2 },
+      { title: 'Good Wine', frequency: 1 },
+    ],
+    isSporty: true,
+  },
+];

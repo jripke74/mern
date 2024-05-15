@@ -76,3 +76,55 @@
 {"t":{"$date":"2024-05-14T09:29:39.691-07:00"},"s":"I",  "c":"STORAGE",  "id":20320,   "ctx":"conn11","msg":"createCollection","attr":{"namespace":"user.sports","uuidDisposition":"generated","uuid":{"uuid":{"$uuid":"a622f098-7002-4ad3-ba19-a46ba4d029f1"}},"options":{}}}
 {"t":{"$date":"2024-05-14T09:29:39.722-07:00"},"s":"I",  "c":"REPL",     "id":7360102, "ctx":"conn11","msg":"Added oplog entry for create to transaction","attr":{"namespace":"user.$cmd","uuid":{"uuid":{"$uuid":"a622f098-7002-4ad3-ba19-a46ba4d029f1"}},"object":{"create":"sports","idIndex":{"v":2,"key":{"_id":1},"name":"_id_"}}}}
 {"t":{"$date":"2024-05-14T09:29:39.723-07:00"},"s":"I",  "c":"INDEX",    "id":20345,   "ctx":"conn11","msg":"Index build: done building","attr":{"buildUUID":null,"collectionUUID":{"uuid":{"$uuid":"a622f098-7002-4ad3-ba19-a46ba4d029f1"}},"namespace":"user.sports","index":"_id_","ident":"user/index-1--678981475217366681","collectionIdent":"user/collection-0--678981475217366681","commitTimestamp":null}}
+{"t":{"$date":"2024-05-15T09:49:34.519-07:00"},"s":"I",  "c":"COMMAND",  "id":4695400, "ctx":"conn11","msg":"Terminating via shutdown command","attr":{"force":false,"timeoutMillis":15000}}
+{"t":{"$date":"2024-05-15T09:49:34.520-07:00"},"s":"I",  "c":"REPL",     "id":4794602, "ctx":"thread39","msg":"Attempting to enter quiesce mode"}
+{"t":{"$date":"2024-05-15T09:49:34.520-07:00"},"s":"I",  "c":"-",        "id":6371601, "ctx":"thread39","msg":"Shutting down the FLE Crud thread pool"}
+{"t":{"$date":"2024-05-15T09:49:34.521-07:00"},"s":"I",  "c":"COMMAND",  "id":4784901, "ctx":"thread39","msg":"Shutting down the MirrorMaestro"}
+{"t":{"$date":"2024-05-15T09:49:34.521-07:00"},"s":"I",  "c":"SHARDING", "id":4784902, "ctx":"thread39","msg":"Shutting down the WaitForMajorityService"}
+{"t":{"$date":"2024-05-15T09:49:34.521-07:00"},"s":"I",  "c":"CONTROL",  "id":4784903, "ctx":"thread39","msg":"Shutting down the LogicalSessionCache"}
+{"t":{"$date":"2024-05-15T09:49:34.522-07:00"},"s":"I",  "c":"NETWORK",  "id":20562,   "ctx":"thread39","msg":"Shutdown: going to close listening sockets"}
+{"t":{"$date":"2024-05-15T09:49:34.522-07:00"},"s":"I",  "c":"NETWORK",  "id":23017,   "ctx":"listener","msg":"removing socket file","attr":{"path":"/tmp/mongodb-27017.sock"}}
+{"t":{"$date":"2024-05-15T09:49:34.523-07:00"},"s":"I",  "c":"NETWORK",  "id":4784905, "ctx":"thread39","msg":"Shutting down the global connection pool"}
+{"t":{"$date":"2024-05-15T09:49:34.523-07:00"},"s":"I",  "c":"CONTROL",  "id":4784906, "ctx":"thread39","msg":"Shutting down the FlowControlTicketholder"}
+{"t":{"$date":"2024-05-15T09:49:34.523-07:00"},"s":"I",  "c":"-",        "id":20520,   "ctx":"thread39","msg":"Stopping further Flow Control ticket acquisitions."}
+{"t":{"$date":"2024-05-15T09:49:34.523-07:00"},"s":"I",  "c":"CONTROL",  "id":4784908, "ctx":"thread39","msg":"Shutting down the PeriodicThreadToAbortExpiredTransactions"}
+{"t":{"$date":"2024-05-15T09:49:34.524-07:00"},"s":"I",  "c":"REPL",     "id":4784909, "ctx":"thread39","msg":"Shutting down the ReplicationCoordinator"}
+{"t":{"$date":"2024-05-15T09:49:34.524-07:00"},"s":"I",  "c":"SHARDING", "id":4784910, "ctx":"thread39","msg":"Shutting down the ShardingInitializationMongoD"}
+{"t":{"$date":"2024-05-15T09:49:34.524-07:00"},"s":"I",  "c":"REPL",     "id":4784911, "ctx":"thread39","msg":"Enqueuing the ReplicationStateTransitionLock for shutdown"}
+{"t":{"$date":"2024-05-15T09:49:34.524-07:00"},"s":"I",  "c":"-",        "id":4784912, "ctx":"thread39","msg":"Killing all operations for shutdown"}
+{"t":{"$date":"2024-05-15T09:49:34.525-07:00"},"s":"I",  "c":"-",        "id":4695300, "ctx":"thread39","msg":"Interrupted all currently running operations","attr":{"opsKilled":5}}
+{"t":{"$date":"2024-05-15T09:49:34.525-07:00"},"s":"I",  "c":"TENANT_M", "id":5093807, "ctx":"thread39","msg":"Shutting down all TenantMigrationAccessBlockers on global shutdown"}
+{"t":{"$date":"2024-05-15T09:49:34.525-07:00"},"s":"I",  "c":"ASIO",     "id":22582,   "ctx":"TenantMigrationBlockerNet","msg":"Killing all outstanding egress activity."}
+{"t":{"$date":"2024-05-15T09:49:34.525-07:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn10","msg":"Connection ended","attr":{"remote":"127.0.0.1:49258","uuid":{"uuid":{"$uuid":"67107c1d-2340-45ec-a4c4-791ca0c2593a"}},"connectionId":10,"connectionCount":2}}
+{"t":{"$date":"2024-05-15T09:49:34.526-07:00"},"s":"I",  "c":"ASIO",     "id":6529201, "ctx":"thread39","msg":"Network interface redundant shutdown","attr":{"state":"Stopped"}}
+{"t":{"$date":"2024-05-15T09:49:34.526-07:00"},"s":"I",  "c":"ASIO",     "id":22582,   "ctx":"thread39","msg":"Killing all outstanding egress activity."}
+{"t":{"$date":"2024-05-15T09:49:34.526-07:00"},"s":"I",  "c":"COMMAND",  "id":4784913, "ctx":"thread39","msg":"Shutting down all open transactions"}
+{"t":{"$date":"2024-05-15T09:49:34.527-07:00"},"s":"I",  "c":"REPL",     "id":4784914, "ctx":"thread39","msg":"Acquiring the ReplicationStateTransitionLock for shutdown"}
+{"t":{"$date":"2024-05-15T09:49:34.527-07:00"},"s":"I",  "c":"INDEX",    "id":4784915, "ctx":"thread39","msg":"Shutting down the IndexBuildsCoordinator"}
+{"t":{"$date":"2024-05-15T09:49:34.527-07:00"},"s":"I",  "c":"NETWORK",  "id":4784918, "ctx":"thread39","msg":"Shutting down the ReplicaSetMonitor"}
+{"t":{"$date":"2024-05-15T09:49:34.528-07:00"},"s":"I",  "c":"SHARDING", "id":4784921, "ctx":"thread39","msg":"Shutting down the MigrationUtilExecutor"}
+{"t":{"$date":"2024-05-15T09:49:34.528-07:00"},"s":"I",  "c":"ASIO",     "id":22582,   "ctx":"MigrationUtil-TaskExecutor","msg":"Killing all outstanding egress activity."}
+{"t":{"$date":"2024-05-15T09:49:34.528-07:00"},"s":"I",  "c":"COMMAND",  "id":4784923, "ctx":"thread39","msg":"Shutting down the ServiceEntryPoint"}
+{"t":{"$date":"2024-05-15T09:49:34.528-07:00"},"s":"I",  "c":"CONTROL",  "id":4784927, "ctx":"thread39","msg":"Shutting down the HealthLog"}
+{"t":{"$date":"2024-05-15T09:49:34.529-07:00"},"s":"I",  "c":"CONTROL",  "id":4784928, "ctx":"thread39","msg":"Shutting down the TTL monitor"}
+{"t":{"$date":"2024-05-15T09:49:34.529-07:00"},"s":"I",  "c":"INDEX",    "id":3684100, "ctx":"thread39","msg":"Shutting down TTL collection monitor thread"}
+{"t":{"$date":"2024-05-15T09:49:34.529-07:00"},"s":"I",  "c":"INDEX",    "id":3684101, "ctx":"thread39","msg":"Finished shutting down TTL collection monitor thread"}
+{"t":{"$date":"2024-05-15T09:49:34.530-07:00"},"s":"I",  "c":"CONTROL",  "id":6278511, "ctx":"thread39","msg":"Shutting down the Change Stream Expired Pre-images Remover"}
+{"t":{"$date":"2024-05-15T09:49:34.530-07:00"},"s":"I",  "c":"CONTROL",  "id":4784929, "ctx":"thread39","msg":"Acquiring the global lock for shutdown"}
+{"t":{"$date":"2024-05-15T09:49:34.530-07:00"},"s":"I",  "c":"CONTROL",  "id":4784930, "ctx":"thread39","msg":"Shutting down the storage engine"}
+{"t":{"$date":"2024-05-15T09:49:34.530-07:00"},"s":"I",  "c":"STORAGE",  "id":22320,   "ctx":"thread39","msg":"Shutting down journal flusher thread"}
+{"t":{"$date":"2024-05-15T09:49:34.531-07:00"},"s":"I",  "c":"STORAGE",  "id":22321,   "ctx":"thread39","msg":"Finished shutting down journal flusher thread"}
+{"t":{"$date":"2024-05-15T09:49:34.531-07:00"},"s":"I",  "c":"STORAGE",  "id":22322,   "ctx":"thread39","msg":"Shutting down checkpoint thread"}
+{"t":{"$date":"2024-05-15T09:49:34.531-07:00"},"s":"I",  "c":"STORAGE",  "id":22323,   "ctx":"thread39","msg":"Finished shutting down checkpoint thread"}
+{"t":{"$date":"2024-05-15T09:49:34.531-07:00"},"s":"I",  "c":"STORAGE",  "id":22261,   "ctx":"thread39","msg":"Timestamp monitor shutting down"}
+{"t":{"$date":"2024-05-15T09:49:34.532-07:00"},"s":"I",  "c":"STORAGE",  "id":20282,   "ctx":"thread39","msg":"Deregistering all the collections"}
+{"t":{"$date":"2024-05-15T09:49:34.532-07:00"},"s":"I",  "c":"STORAGE",  "id":22317,   "ctx":"thread39","msg":"WiredTigerKVEngine shutting down"}
+{"t":{"$date":"2024-05-15T09:49:34.532-07:00"},"s":"I",  "c":"STORAGE",  "id":22318,   "ctx":"thread39","msg":"Shutting down session sweeper thread"}
+{"t":{"$date":"2024-05-15T09:49:34.532-07:00"},"s":"I",  "c":"STORAGE",  "id":22319,   "ctx":"thread39","msg":"Finished shutting down session sweeper thread"}
+{"t":{"$date":"2024-05-15T09:49:34.533-07:00"},"s":"I",  "c":"STORAGE",  "id":4795902, "ctx":"thread39","msg":"Closing WiredTiger","attr":{"closeConfig":"leak_memory=true,use_timestamp=false,"}}
+{"t":{"$date":"2024-05-15T09:49:34.621-07:00"},"s":"I",  "c":"STORAGE",  "id":4795901, "ctx":"thread39","msg":"WiredTiger closed","attr":{"durationMillis":88}}
+{"t":{"$date":"2024-05-15T09:49:34.621-07:00"},"s":"I",  "c":"STORAGE",  "id":22279,   "ctx":"thread39","msg":"shutdown: removing fs lock..."}
+{"t":{"$date":"2024-05-15T09:49:34.622-07:00"},"s":"I",  "c":"-",        "id":4784931, "ctx":"thread39","msg":"Dropping the scope cache for shutdown"}
+{"t":{"$date":"2024-05-15T09:49:34.622-07:00"},"s":"I",  "c":"FTDC",     "id":20626,   "ctx":"thread39","msg":"Shutting down full-time diagnostic data capture"}
+{"t":{"$date":"2024-05-15T09:49:34.626-07:00"},"s":"I",  "c":"CONTROL",  "id":20565,   "ctx":"thread39","msg":"Now exiting"}
+{"t":{"$date":"2024-05-15T09:49:34.627-07:00"},"s":"I",  "c":"CONTROL",  "id":23138,   "ctx":"thread39","msg":"Shutting down","attr":{"exitCode":0}}

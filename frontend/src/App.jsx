@@ -23,6 +23,7 @@ import Results from './components/tic-tac-toe/Results.jsx';
 import AuthInputs from './components/react-art/AuthInputs.jsx';
 import HeaderArt from './components/react-art/Header.jsx';
 import TimerChalleng from './components/final-countdown/TimerChallenge.jsx';
+import ProjectSidebar from './components/project-tracker/ProjectsSidebar.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -167,6 +168,11 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/project-tracker">
+          <main>
+            <ProjectSidebar />
+          </main>
         </Route>
         <Route path="/final-countdown">
           <header>

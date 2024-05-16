@@ -171,7 +171,7 @@ function App() {
           <Users />
         </Route>
         <Route path="/project-tracker">
-          <main>
+          <main className="h-screen my-8">
             <ProjectSidebar />
             <NewProject />
           </main>

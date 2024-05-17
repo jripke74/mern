@@ -91,6 +91,10 @@ function derivedWinner(gameBoard, players) {
 }
 
 function App() {
+  const [projectState, setProjectState] = useState({
+    selectedProjectId: undefined,
+    projects: [],
+  });
   const [players, setPlayers] = useState(PLAYERS);
   const { token, login, logout, userId } = useAuth();
   const [gameTurns, setGameTurns] = useState([]);
@@ -102,6 +106,23 @@ function App() {
   });
 
   const inputIsValid = userInput.duration >= 1;
+
+  function handleStartAddProject() {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: null,
+      };
+    });
+  }
+
+  let content;
+
+  if (projectState.selectedProjectId === null) {
+    content = <NewProject />;
+  } else if (projectState.selectedProjectId === undefined) {
+    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
+  }
 
   function handleChange(inputIdentifier, newValue) {
     setUserInput((prevUserInput) => {
@@ -173,8 +194,8 @@ function App() {
         </Route>
         <Route path="/project-tracker">
           <main className="h-screen my-8 flex gap-8">
-            <ProjectSidebar />
-            <NoProjectSelected />
+            <ProjectSidebar onStartAddProject={handleStartAddProject} />
+            {content}
           </main>
         </Route>
         <Route path="/final-countdown">

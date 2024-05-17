@@ -91,7 +91,7 @@ function derivedWinner(gameBoard, players) {
 }
 
 function App() {
-  const [projectState, setProjectState] = useState({
+  const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
   });
@@ -108,7 +108,7 @@ function App() {
   const inputIsValid = userInput.duration >= 1;
 
   function handleStartAddProject() {
-    setProjectState((prevState) => {
+    setProjectsState((prevState) => {
       return {
         ...prevState,
         selectedProjectId: null,
@@ -117,26 +117,26 @@ function App() {
   }
 
   function handleAddProject(projectData) {
-    setProjectState((prevState) => {
+    setProjectsState((prevState) => {
+      const projectId = Math.random();
       const newProject = {
         ...projectData,
-        id: Math.random(),
+        id: projectId,
       };
 
       return {
         ...prevState,
+        selectedProjectId: undefined,
         projects: [...prevState.projects, newProject],
       };
     });
   }
 
-  console.log(projectState);
-
   let content;
 
-  if (projectState.selectedProjectId === null) {
+  if (projectsState.selectedProjectId === null) {
     content = <NewProject onAdd={handleAddProject} />;
-  } else if (projectState.selectedProjectId === undefined) {
+  } else if (projectsState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
 
@@ -210,7 +210,10 @@ function App() {
         </Route>
         <Route path="/project-tracker">
           <main className="bg-white h-screen flex gap-8">
-            <ProjectSidebar onStartAddProject={handleStartAddProject} />
+            <ProjectSidebar
+              onStartAddProject={handleStartAddProject}
+              projects={projectsState.projects}
+            />
             {content}
           </main>
         </Route>

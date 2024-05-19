@@ -209,7 +209,7 @@ function App() {
           <Users />
         </Route>
         <Route path="/project-tracker">
-          <main className="bg-white h-screen flex gap-8">
+          <main className=" bg-white h-screen flex gap-8">
             <ProjectSidebar
               onStartAddProject={handleStartAddProject}
               projects={projectsState.projects}

@@ -26,6 +26,7 @@ import TimerChalleng from './components/final-countdown/TimerChallenge.jsx';
 import ProjectSidebar from './components/project-tracker/ProjectsSidebar.jsx';
 import NewProject from './components/project-tracker/NewProject.jsx';
 import NoProjectSelected from './components/project-tracker/NoProjectSelected.jsx';
+import SelectedProject from './components/project-tracker/SelectedProject.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -107,6 +108,15 @@ function App() {
 
   const inputIsValid = userInput.duration >= 1;
 
+  function handleSelectProject(id) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: id,
+      };
+    });
+  }
+
   function handleStartAddProject() {
     setProjectsState((prevState) => {
       return {
@@ -141,7 +151,11 @@ function App() {
     });
   }
 
-  let content;
+  const selectedProject = projectsState.projects.find(
+    (project) => project.id === projectsState.selectedProjectId
+  );
+
+  let content = <SelectedProject project={selectedProject} />;
 
   if (projectsState.selectedProjectId === null) {
     content = (
@@ -224,6 +238,7 @@ function App() {
             <ProjectSidebar
               onStartAddProject={handleStartAddProject}
               projects={projectsState.projects}
+              onSelectProject={handleSelectProject}
             />
             {content}
           </main>

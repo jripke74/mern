@@ -170,7 +170,7 @@ function App() {
           <Users />
         </Route>
         <Route path="/project-tracker">
-          <main>
+          <main className="m-0">
             <ProjectSidebar />
           </main>
         </Route>

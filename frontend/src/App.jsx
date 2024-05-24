@@ -23,10 +23,7 @@ import Results from './components/tic-tac-toe/Results.jsx';
 import AuthInputs from './components/react-art/AuthInputs.jsx';
 import HeaderArt from './components/react-art/Header.jsx';
 import TimerChalleng from './components/final-countdown/TimerChallenge.jsx';
-import ProjectSidebar from './components/project-tracker/ProjectsSidebar.jsx';
-import NewProject from './components/project-tracker/NewProject.jsx';
-import NoProjectSelected from './components/project-tracker/NoProjectSelected.jsx';
-import SelectedProject from './components/project-tracker/SelectedProject.jsx';
+import ProjectSidebar from './components/project-tracker/ProjectSidebar.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -92,11 +89,6 @@ function derivedWinner(gameBoard, players) {
 }
 
 function App() {
-  const [projectsState, setProjectsState] = useState({
-    selectedProjectId: undefined,
-    projects: [],
-    tasks: [],
-  });
   const [players, setPlayers] = useState(PLAYERS);
   const { token, login, logout, userId } = useAuth();
   const [gameTurns, setGameTurns] = useState([]);
@@ -108,108 +100,6 @@ function App() {
   });
 
   const inputIsValid = userInput.duration >= 1;
-
-  function handleAddTask(text) {
-    setProjectsState((prevState) => {
-      const taskId = Math.random();
-      const newTask = {
-        text: text,
-        projectId: prevState.selectedProjectId,
-        id: taskId,
-      };
-
-      return {
-        ...prevState,
-        tasks: [newTask, ...prevState.tasks],
-      };
-    });
-  }
-
-  function handleDeleteTask(id) {
-    setProjectsState((prevState) => {
-      return {
-        ...prevState,
-        tasks: prevState.tasks.filter((task) => task.id !== id),
-      };
-    });
-  }
-
-  function handleSelectProject(id) {
-    setProjectsState((prevState) => {
-      return {
-        ...prevState,
-        selectedProjectId: id,
-      };
-    });
-  }
-
-  function handleStartAddProject() {
-    setProjectsState((prevState) => {
-      return {
-        ...prevState,
-        selectedProjectId: null,
-      };
-    });
-  }
-
-  function handleCancelAddProject() {
-    setProjectsState((prevState) => {
-      return {
-        ...prevState,
-        selectedProjectId: undefined,
-      };
-    });
-  }
-
-  function handleAddProject(projectData) {
-    setProjectsState((prevState) => {
-      const projectId = Math.random();
-      const newProject = {
-        ...projectData,
-        id: projectId,
-      };
-
-      return {
-        ...prevState,
-        selectedProjectId: undefined,
-        projects: [...prevState.projects, newProject],
-      };
-    });
-  }
-
-  function handleDeleteProject() {
-    setProjectsState((prevState) => {
-      return {
-        ...prevState,
-        selectedProjectId: undefined,
-        projects: prevState.projects.filter(
-          (project) => project.id !== prevState.selectedProjectId
-        ),
-      };
-    });
-  }
-
-  const selectedProject = projectsState.projects.find(
-    (project) => project.id === projectsState.selectedProjectId
-  );
-
-  let content = (
-    <SelectedProject
-      project={selectedProject}
-      onDelete={handleDeleteProject}
-      onAddTask={handleAddTask}
-      onDeleteTask={handleDeleteTask}
-      tasks={projectsState.tasks}
-    />
-  );
-
-  if (projectsState.selectedProjectId === null) {
-    content = (
-      <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
-    );
-  } else if (projectsState.selectedProjectId === undefined) {
-    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
-  }
 
   function handleChange(inputIdentifier, newValue) {
     setUserInput((prevUserInput) => {
@@ -280,14 +170,8 @@ function App() {
           <Users />
         </Route>
         <Route path="/project-tracker">
-          <main className=" bg-white h-screen flex gap-8">
-            <ProjectSidebar
-              onStartAddProject={handleStartAddProject}
-              projects={projectsState.projects}
-              onSelectProject={handleSelectProject}
-              selectedProjectId={projectsState.selectedProjectId}
-            />
-            {content}
+          <main>
+            <ProjectSidebar />
           </main>
         </Route>
         <Route path="/final-countdown">

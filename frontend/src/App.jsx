@@ -24,6 +24,7 @@ import AuthInputs from './components/react-art/AuthInputs.jsx';
 import HeaderArt from './components/react-art/Header.jsx';
 import TimerChalleng from './components/final-countdown/TimerChallenge.jsx';
 import ProjectSidebar from './components/project-tracker/ProjectSidebar.jsx';
+import NewProject from './components/project-tracker/NewProject.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -170,8 +171,9 @@ function App() {
           <Users />
         </Route>
         <Route path="/project-tracker">
-          <main className="m-0">
+          <main className="h-screen my-8 flex gap-8">
             <ProjectSidebar />
+            <NewProject />
           </main>
         </Route>
         <Route path="/final-countdown">

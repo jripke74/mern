@@ -25,7 +25,7 @@ import HeaderArt from './components/react-art/Header.jsx';
 import TimerChalleng from './components/final-countdown/TimerChallenge.jsx';
 import ProjectSidebar from './components/project-tracker/ProjectSidebar.jsx';
 import NewProject from './components/project-tracker/NewProject.jsx';
-import NoProjectselected from './components/project-tracker/NoProjectSelected.jsx';
+import NoProjectSelected from './components/project-tracker/NoProjectSelected.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -91,6 +91,10 @@ function derivedWinner(gameBoard, players) {
 }
 
 function App() {
+  const [projectsState, setProjectsState] = useState({
+    selectedProjectId: undefined,
+    projects: [],
+  });
   const [players, setPlayers] = useState(PLAYERS);
   const { token, login, logout, userId } = useAuth();
   const [gameTurns, setGameTurns] = useState([]);
@@ -100,6 +104,23 @@ function App() {
     expectedReturn: 6,
     duration: 10,
   });
+
+  function handleStartAddProject() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: null,
+      };
+    });
+  }
+
+  let content;
+
+  if (projectsState.selectedProjectId === null) {
+    content = <NewProject />;
+  } else if (projectsState.selectedProjectId === undefined) {
+    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
+  }
 
   const inputIsValid = userInput.duration >= 1;
 
@@ -173,8 +194,8 @@ function App() {
         </Route>
         <Route path="/project-tracker">
           <main className="h-screen my-8 flex gap-8">
-            <ProjectSidebar />
-            <NoProjectselected />
+            <ProjectSidebar onStartAddProject={handleStartAddProject} />
+            {content}
           </main>
         </Route>
         <Route path="/final-countdown">

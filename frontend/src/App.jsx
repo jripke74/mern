@@ -114,6 +114,20 @@ function App() {
     });
   }
 
+  function handleAddProject(projecData) {
+    setProjectsState((prevState) => {
+      const newProject = {
+        ...projecData,
+        id: Math.random(),
+      };
+
+      return {
+        ...prevState,
+        projects: [...prevState.projects, newProject],
+      };
+    });
+  }
+
   let content;
 
   if (projectsState.selectedProjectId === null) {

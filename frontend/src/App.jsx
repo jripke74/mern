@@ -95,6 +95,7 @@ function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
   const [players, setPlayers] = useState(PLAYERS);
   const { token, login, logout, userId } = useAuth();
@@ -105,6 +106,10 @@ function App() {
     expectedReturn: 6,
     duration: 10,
   });
+
+  function handlAddTask() {}
+
+  function handleDeleteTask() {}
 
   function handleSelectProject(id) {
     setProjectsState((prevState) => {

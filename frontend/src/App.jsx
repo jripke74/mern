@@ -26,6 +26,7 @@ import TimerChalleng from './components/final-countdown/TimerChallenge.jsx';
 import ProjectSidebar from './components/project-tracker/ProjectSidebar.jsx';
 import NewProject from './components/project-tracker/NewProject.jsx';
 import NoProjectSelected from './components/project-tracker/NoProjectSelected.jsx';
+import SelectedProject from './components/project-tracker/SelectedProject.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -148,7 +149,11 @@ function App() {
     });
   }
 
-  let content;
+  const selectedProject = projectsState.projects.find(
+    (project) => project.id === projectsState.selectedProjectId
+  );
+
+  let content = <SelectedProject project={selectedProject} />;
 
   if (projectsState.selectedProjectId === null) {
     content = (

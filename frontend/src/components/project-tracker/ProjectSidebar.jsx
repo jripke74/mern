@@ -20,7 +20,7 @@ export default function ProjectSidebar({
             'w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-400';
 
           if (project.id === selectedProjectId) {
-            cssClasses += ' bg-stone-800 text-stone-200';
+            cssClasses += ' bg-stone-200 text-stone-600';
           } else {
             cssClasses += ' text-stone-400';
           }

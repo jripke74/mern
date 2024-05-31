@@ -674,3 +674,9 @@ user > db.users.find({ name: 'Jeff' });
     isSporty: true,
   },
 ];
+
+db.users.deleteOne({ name: 'Chris' });
+
+db.users.deleteMany({ age: { $gt: 30 }, isSporty: true });
+
+db.users.deleteMany({ age: { $exists: false }, isSporty: true });

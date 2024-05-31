@@ -680,3 +680,9 @@ db.users.deleteOne({ name: 'Chris' });
 db.users.deleteMany({ age: { $gt: 30 }, isSporty: true });
 
 db.users.deleteMany({ age: { $exists: false }, isSporty: true });
+
+db.users.deleteMany({}); // deletes everything in that collection
+
+db.users.drop(); // deletes entire collections
+
+db.dropDatabase(); // deletes db

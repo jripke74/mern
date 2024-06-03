@@ -2,6 +2,7 @@ import { useRef } from 'react';
 
 import CartModal from './CartModal.jsx';
 import classes from './ShopHeader.module.css';
+import logo from '../../assets/logo2.png';
 
 export default function Header({ cart, onUpdateCartItemQuantity }) {
   const modal = useRef();
@@ -32,9 +33,9 @@ export default function Header({ cart, onUpdateCartItemQuantity }) {
         title="Your Cart"
         actions={modalActions}
       />
-      <header id={classes.mainHeader}>
-        <div id={classes.mainTitle}>
-          <img src="logo2.png" alt="Elegant model" />
+      <header id={classes['main-header']}>
+        <div id={classes['main-title']}>
+          <img src={logo} alt="Elegant model" />
           <h1>Elegant Context</h1>
         </div>
         <p>

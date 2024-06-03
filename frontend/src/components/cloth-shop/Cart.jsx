@@ -8,10 +8,10 @@ export default function Cart({ items, onUpdateItemQuantity }) {
   const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
 
   return (
-    <div id="cart">
+    <div id={classes.cart}>
       {items.length === 0 && <p>No items in cart!</p>}
       {items.length > 0 && (
-        <ul id={cartItems}>
+        <ul id={classes['cart-items']}>
           {items.map((items) => {
             const formattedPrice = `$${item.price.toFixed(2)}`;
 

@@ -22,7 +22,7 @@ export default function Header({ cart, onUpdateCartItemQuantity }) {
     );
   }
 
-  return CartModal(
+  return (
     <>
       <CartModal
         ref={modal}
@@ -33,7 +33,7 @@ export default function Header({ cart, onUpdateCartItemQuantity }) {
       />
       <header id="main-header">
         <div id="main-title">
-          <img src="logo.png" alt="Elegant model" />
+          <img src="logo2.png" alt="Elegant model" />
           <h1>Elegant Context</h1>
         </div>
         <p>

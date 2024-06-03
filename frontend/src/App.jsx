@@ -27,6 +27,9 @@ import ProjectSidebar from './components/project-tracker/ProjectSidebar.jsx';
 import NewProject from './components/project-tracker/NewProject.jsx';
 import NoProjectSelected from './components/project-tracker/NoProjectSelected.jsx';
 import SelectedProject from './components/project-tracker/SelectedProject.jsx';
+import ShopHeader from './components/cloth-shop/ShopHeader.jsx';
+import Shop from './components/cloth-shop/Shop.jsx';
+import { DUMMY_PRODUCTS } from './components/cloth-shop/dummy-products.js';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -92,6 +95,9 @@ function derivedWinner(gameBoard, players) {
 }
 
 function App() {
+  const [shopingCart, setShoppingCart] = useState({
+    items: [],
+  });
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
@@ -106,6 +112,62 @@ function App() {
     expectedReturn: 6,
     duration: 10,
   });
+
+  function handleAddItemToCart(id) {
+    setShoppingCart((prevShoppingCart) => {
+      const updatedItem = [...prevShoppingCart.items];
+
+      const existingCartItemIndex = udatedItems.findIndex(
+        (cartItem) => cartItem.id === id
+      );
+      const existingCartItem = updatedItems[existingCartItemIndex];
+
+      if (existingCartItem) {
+        const updatedItem = {
+          ...existingCartItem,
+          quantity: existingCartItem.quantity + 1,
+        };
+        updatedItems[existingCartItemIndex] = updatedItem;
+      } else {
+        const product = DUMMY_PRODUCTS.find((product) => product.id === id);
+        updatedItems.push({
+          id: id,
+          name: product.title,
+          price: product.price,
+          quantity: 1,
+        });
+      }
+
+      return {
+        items: updatedItems,
+      };
+    });
+  }
+
+  function handleUpdateCartItemQuantity(productId, amount) {
+    setShoppingCart((prevShoppingCart) => {
+      const updatedItems = [...prevShoppingCart.items];
+      const updatedItemIndex = updatedItems.findIndex(
+        (item) => item.id === productId
+      );
+
+      const updatedItem = {
+        ...updatedItems[updatedItemIndex],
+      };
+
+      updatedItem.quantity += amount;
+
+      if (updatedItem.quantity <= 0) {
+        updatedItems.splice(updatedItemIndex, 1);
+      } else {
+        updatedItems[updatedItemIndex] = updatedItem;
+      }
+
+      return {
+        items: updatedItems,
+      };
+    });
+  }
 
   function handleAddTask(text) {
     setProjectsState((prevState) => {
@@ -278,6 +340,15 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/cloth-shop">
+          <>
+            <ShopHeader
+              cart={shopingCart}
+              onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
+            />
+            <Shop onAddItemToCart={handleAddItemToCart} />
+          </>
         </Route>
         <Route path="/project-tracker">
           <main className="h-screen my-8 flex gap-8">

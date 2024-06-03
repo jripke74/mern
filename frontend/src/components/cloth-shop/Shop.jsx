@@ -7,8 +7,8 @@ export default function Shop({ onAddItemToCart }) {
       <h3>Elegant Clothing For Everyone</h3>
 
       <ul id="products">
-        {DUMMY_PRODUCTS.map((Product) => (
-          <li key={Product.id}>
+        {DUMMY_PRODUCTS.map((product) => (
+          <li key={product.id}>
             <Product {...product} onAddItemToCart={onAddItemToCart} />
           </li>
         ))}

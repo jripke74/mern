@@ -1,3 +1,5 @@
+import classes from './Cart.module.css';
+
 export default function Cart({ items, onUpdateItemQuantity }) {
   const totalPrice = items.reduce(
     (acc, items) => acc + items.price * items.quantity,
@@ -9,7 +11,7 @@ export default function Cart({ items, onUpdateItemQuantity }) {
     <div id="cart">
       {items.length === 0 && <p>No items in cart!</p>}
       {items.length > 0 && (
-        <ul id="cart-items">
+        <ul id={cartItems}>
           {items.map((items) => {
             const formattedPrice = `$${item.price.toFixed(2)}`;
 
@@ -19,7 +21,7 @@ export default function Cart({ items, onUpdateItemQuantity }) {
                   <span>{item.name}</span>
                   <span>({formattedPrice})</span>
                 </div>
-                <div className="cart-item-actions">
+                <div className={cartIemsActions}>
                   <button onClick={() => onUpdateItemQuantity(item.id, -1)}>
                     -
                   </button>

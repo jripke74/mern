@@ -1,12 +1,11 @@
 import { DUMMY_PRODUCTS } from './dummy-products.js';
 import Product from './Product.jsx';
+import classes from './Shop.module.css';
 
 export default function Shop({ onAddItemToCart }) {
   return (
-    <section id="shop">
-      <h3>Elegant Clothing For Everyone</h3>
-
-      <ul id="products">
+    <section>
+      <ul id={classes.products}>
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
             <Product {...product} onAddItemToCart={onAddItemToCart} />

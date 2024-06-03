@@ -1,3 +1,5 @@
+import classes from './Product.module.css';
+
 export default function Product({
   id,
   image,
@@ -7,15 +9,15 @@ export default function Product({
   onAddToCart,
 }) {
   return (
-    <article className="product">
+    <article className={classes.product}>
       <img src={image} alt={title} />
       <div className="product-content">
         <div>
           <h3>{title}</h3>
-          <p className="product-price">${price}</p>
+          <p className={classes.productPrice}>${price}</p>
           <p>{description}</p>
         </div>
-        <p className="product-actions">
+        <p className={classes.productActions}>
           <button onClick={() => onAddToCart(id)}>Add to Cart</button>
         </p>
       </div>

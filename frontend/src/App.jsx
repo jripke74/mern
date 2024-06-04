@@ -344,7 +344,7 @@ function App() {
           <Users />
         </Route>
         <Route path="/cloth-shop">
-          <CartContext.Provider>
+          <CartContext.Provider value={{ items: [] }}>
             <ShopHeader
               cart={shopingCart}
               onUpdateCartItemQuantity={handleUpdateCartItemQuantity}

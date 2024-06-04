@@ -12,7 +12,7 @@ export default function Cart({ items, onUpdateItemQuantity }) {
       {items.length === 0 && <p>No items in cart!</p>}
       {items.length > 0 && (
         <ul id={classes['cart-items']}>
-          {items.map((items) => {
+          {items.map((item) => {
             const formattedPrice = `$${item.price.toFixed(2)}`;
 
             return (
@@ -21,7 +21,7 @@ export default function Cart({ items, onUpdateItemQuantity }) {
                   <span>{item.name}</span>
                   <span>({formattedPrice})</span>
                 </div>
-                <div className={cartIemsActions}>
+                <div className={classes['cart-item-actions']}>
                   <button onClick={() => onUpdateItemQuantity(item.id, -1)}>
                     -
                   </button>
@@ -35,7 +35,7 @@ export default function Cart({ items, onUpdateItemQuantity }) {
           })}
         </ul>
       )}
-      <p id="cart-total-price">
+      <p id={classes['cart-total-price']}>
         Cart Total: <strong>{formattedTotalPrice}</strong>
       </p>
     </div>

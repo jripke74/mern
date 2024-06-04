@@ -29,7 +29,9 @@ import NoProjectSelected from './components/project-tracker/NoProjectSelected.js
 import SelectedProject from './components/project-tracker/SelectedProject.jsx';
 import ShopHeader from './components/cloth-shop/ShopHeader.jsx';
 import Shop from './components/cloth-shop/Shop.jsx';
+import Product from './components/cloth-shop/Product.jsx';
 import { DUMMY_PRODUCTS } from './components/cloth-shop/dummy-products.js';
+import { CartContext } from './store/shopping-cart-context.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -115,9 +117,9 @@ function App() {
 
   function handleAddItemToCart(id) {
     setShoppingCart((prevShoppingCart) => {
-      const updatedItem = [...prevShoppingCart.items];
+      const updatedItems = [...prevShoppingCart.items];
 
-      const existingCartItemIndex = udatedItems.findIndex(
+      const existingCartItemIndex = updatedItems.findIndex(
         (cartItem) => cartItem.id === id
       );
       const existingCartItem = updatedItems[existingCartItemIndex];
@@ -342,13 +344,19 @@ function App() {
           <Users />
         </Route>
         <Route path="/cloth-shop">
-          <>
+          <CartContext.Provider>
             <ShopHeader
               cart={shopingCart}
               onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
             />
-            <Shop onAddItemToCart={handleAddItemToCart} />
-          </>
+            <Shop>
+              {DUMMY_PRODUCTS.map((product) => (
+                <li key={product.id}>
+                  <Product {...product} onAddToCart={handleAddItemToCart} />
+                </li>
+              ))}
+            </Shop>
+          </CartContext.Provider>
         </Route>
         <Route path="/project-tracker">
           <main className="h-screen my-8 flex gap-8">

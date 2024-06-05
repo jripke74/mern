@@ -350,14 +350,11 @@ function App() {
         </Route>
         <Route path="/cloth-shop">
           <CartContext.Provider value={ctxValue}>
-            <ShopHeader
-              cart={shoppingCart}
-              onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-            />
+            <ShopHeader />
             <Shop>
               {DUMMY_PRODUCTS.map((product) => (
                 <li key={product.id}>
-                  <Product {...product} onAddToCart={handleAddItemToCart} />
+                  <Product {...product} />
                 </li>
               ))}
             </Shop>

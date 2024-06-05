@@ -31,7 +31,7 @@ import ShopHeader from './components/cloth-shop/ShopHeader.jsx';
 import Shop from './components/cloth-shop/Shop.jsx';
 import Product from './components/cloth-shop/Product.jsx';
 import { DUMMY_PRODUCTS } from './components/cloth-shop/dummy-products.js';
-import { CartContext } from './store/shopping-cart-context.jsx';
+import CartContextProvider from './store/shopping-cart-context.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -97,9 +97,6 @@ function derivedWinner(gameBoard, players) {
 }
 
 function App() {
-  const [shoppingCart, setShoppingCart] = useState({
-    items: [],
-  });
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
@@ -114,62 +111,6 @@ function App() {
     expectedReturn: 6,
     duration: 10,
   });
-
-  function handleAddItemToCart(id) {
-    setShoppingCart((prevShoppingCart) => {
-      const updatedItems = [...prevShoppingCart.items];
-
-      const existingCartItemIndex = updatedItems.findIndex(
-        (cartItem) => cartItem.id === id
-      );
-      const existingCartItem = updatedItems[existingCartItemIndex];
-
-      if (existingCartItem) {
-        const updatedItem = {
-          ...existingCartItem,
-          quantity: existingCartItem.quantity + 1,
-        };
-        updatedItems[existingCartItemIndex] = updatedItem;
-      } else {
-        const product = DUMMY_PRODUCTS.find((product) => product.id === id);
-        updatedItems.push({
-          id: id,
-          name: product.title,
-          price: product.price,
-          quantity: 1,
-        });
-      }
-
-      return {
-        items: updatedItems,
-      };
-    });
-  }
-
-  function handleUpdateCartItemQuantity(productId, amount) {
-    setShoppingCart((prevShoppingCart) => {
-      const updatedItems = [...prevShoppingCart.items];
-      const updatedItemIndex = updatedItems.findIndex(
-        (item) => item.id === productId
-      );
-
-      const updatedItem = {
-        ...updatedItems[updatedItemIndex],
-      };
-
-      updatedItem.quantity += amount;
-
-      if (updatedItem.quantity <= 0) {
-        updatedItems.splice(updatedItemIndex, 1);
-      } else {
-        updatedItems[updatedItemIndex] = updatedItem;
-      }
-
-      return {
-        items: updatedItems,
-      };
-    });
-  }
 
   function handleAddTask(text) {
     setProjectsState((prevState) => {
@@ -317,12 +258,6 @@ function App() {
     });
   }
 
-  const ctxValue = {
-    items: shoppingCart.items,
-    addItemToCart: handleAddItemToCart,
-    updateItemQuantity: handleUpdateCartItemQuantity,
-  };
-
   let routes;
 
   if (token) {
@@ -350,7 +285,7 @@ function App() {
           <Users />
         </Route>
         <Route path="/cloth-shop">
-          <CartContext.Provider value={ctxValue}>
+          <CartContextProvider>
             <ShopHeader />
             <Shop>
               {DUMMY_PRODUCTS.map((product) => (
@@ -359,7 +294,7 @@ function App() {
                 </li>
               ))}
             </Shop>
-          </CartContext.Provider>
+          </CartContextProvider>
         </Route>
         <Route path="/project-tracker">
           <main className="h-screen my-8 flex gap-8">

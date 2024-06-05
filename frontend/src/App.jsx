@@ -97,7 +97,7 @@ function derivedWinner(gameBoard, players) {
 }
 
 function App() {
-  const [shopingCart, setShoppingCart] = useState({
+  const [shoppingCart, setShoppingCart] = useState({
     items: [],
   });
   const [projectsState, setProjectsState] = useState({
@@ -317,6 +317,11 @@ function App() {
     });
   }
 
+  const ctxValue = {
+    items: shoppingCart.items,
+    addItemToCart: handleAddItemToCart,
+  };
+
   let routes;
 
   if (token) {
@@ -344,9 +349,9 @@ function App() {
           <Users />
         </Route>
         <Route path="/cloth-shop">
-          <CartContext.Provider value={{ items: [] }}>
+          <CartContext.Provider value={ctxValue}>
             <ShopHeader
-              cart={shopingCart}
+              cart={shoppingCart}
               onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
             />
             <Shop>

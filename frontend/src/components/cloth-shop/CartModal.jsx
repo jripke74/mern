@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 import Cart from './Cart.jsx';
 
-import classes from './Cart.module.css';
+import classes from './CartModal.module.css';
 
 const CartModal = forwardRef(function Modal({ title, actions }, ref) {
   const dialog = useRef();

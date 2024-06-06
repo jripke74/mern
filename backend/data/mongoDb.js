@@ -686,3 +686,9 @@ db.users.deleteMany({}); // deletes everything in that collection
 db.users.drop(); // deletes entire collections
 
 db.dropDatabase(); // deletes db
+
+db.contacts.explain().find({ 'dob.age': { $gt: 60 } });
+
+db.contacts.explain('executionStats').find({ 'dob.age': { $gt: 60 } });
+
+db.contacts.createIndex({ 'dob.age': 1 });

@@ -698,3 +698,7 @@ db.contacts.dropIndex({ 'dob.age': 1 });
 db.contacts.createIndex({ gender: 1 });
 
 db.contacts.explain('executionStats').find({ gender: 'male' });
+
+db.contacts.explain().find({ 'dob.age': 35 }).sort({ gender: 1 });
+
+db.contacts.getIndexes();

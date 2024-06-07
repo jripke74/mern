@@ -792,3 +792,4 @@
 {"t":{"$date":"2024-06-07T09:25:08.224-07:00"},"s":"I",  "c":"STORAGE",  "id":6776600, "ctx":"TimestampMonitor","msg":"The ident was successfully dropped","attr":{"ident":"internal-30-4032218156086188860","dropTimestamp":{"$timestamp":{"t":0,"i":0}}}}
 {"t":{"$date":"2024-06-07T09:25:08.225-07:00"},"s":"I",  "c":"STORAGE",  "id":22237,   "ctx":"TimestampMonitor","msg":"Completing drop for ident","attr":{"ident":"internal-29-4032218156086188860","dropTimestamp":{"$timestamp":{"t":0,"i":0}}}}
 {"t":{"$date":"2024-06-07T09:25:08.236-07:00"},"s":"I",  "c":"STORAGE",  "id":6776600, "ctx":"TimestampMonitor","msg":"The ident was successfully dropped","attr":{"ident":"internal-29-4032218156086188860","dropTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+{"t":{"$date":"2024-06-07T09:29:30.175-07:00"},"s":"I",  "c":"QUERY",    "id":20528,   "ctx":"LogicalSessionCacheRefresh","msg":"Killing cursor as part of killing session(s)","attr":{"cursorId":8373496024401826284}}

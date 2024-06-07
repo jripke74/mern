@@ -702,3 +702,7 @@ db.contacts.explain('executionStats').find({ gender: 'male' });
 db.contacts.explain().find({ 'dob.age': 35 }).sort({ gender: 1 });
 
 db.contacts.getIndexes();
+
+db.users.insertMany([{ name: 'Max', email: 'max@test.com' }, { name: 'Manu' }]);
+
+db.users.createIndex({ email: 1 }, { uinque: true });

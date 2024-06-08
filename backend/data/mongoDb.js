@@ -718,3 +718,17 @@ db.sessions.insertOne({ data: 'lkjojjd', createdAt: new Date() });
 
 db.sessions.createIndex({ createdAt: 1 }, { expireAfterSeconds: 10 }); // deletes docs after 10 seconds
 db.customers.explain('allPlansExecution').find({ name: 'Max', age: 30 });
+
+db.contacts.insertOne({
+  name: 'Max',
+  hobbies: ['Cooking', 'Sports'],
+  addresses: [{ street: 'Main Street' }, { street: 'Secone Street' }],
+});
+db.contacts.createIndex({ hobbies: 1 });
+db.contacts.createIndex({ 'addresses.street': 1 });
+db.contacts.explain('executionStats').find({ hobbies: 'Sports' });
+
+db.products.createIndex({ description: 'text' });
+db.products.find({ $text: { $search: 'awesome' } });
+db.products.find({ $text: { $search: 'red book' } });
+db.products.find({ $text: { $search: '"red book"' } }); // searches for phrase "red book"

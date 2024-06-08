@@ -706,3 +706,15 @@ db.contacts.getIndexes();
 db.users.insertMany([{ name: 'Max', email: 'max@test.com' }, { name: 'Manu' }]);
 
 db.users.createIndex({ email: 1 }, { uinque: true });
+
+db.sessions.insertOne({ data: 'lkjojjd', createdAt: new Date() });
+[
+  {
+    _id: ObjectId('66633a8600f622191cee6512'),
+    data: 'lkjojjd',
+    createdAt: ISODate('2024-06-07T16:51:18.872Z'),
+  },
+];
+
+db.sessions.createIndex({ createdAt: 1 }, { expireAfterSeconds: 10 }); // deletes docs after 10 seconds
+db.customers.explain('allPlansExecution').find({ name: 'Max', age: 30 });

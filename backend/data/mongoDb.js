@@ -732,3 +732,42 @@ db.products.createIndex({ description: 'text' });
 db.products.find({ $text: { $search: 'awesome' } });
 db.products.find({ $text: { $search: 'red book' } });
 db.products.find({ $text: { $search: '"red book"' } }); // searches for phrase "red book"
+
+db.products.find({ $text: { $search: 'awesome t-shirt' } });
+db.products.find(
+  { $text: { $search: 'awesome t-shirt' } },
+  { score: { $meta: 'textScore' } }
+);
+[
+  {
+    _id: ObjectId('666475bf00f622191cee651a'),
+    title: 'A Book',
+    description: 'This is an awesome book a young artist!',
+    score: 0.625,
+  },
+  {
+    _id: ObjectId('666475bf00f622191cee651b'),
+    title: 'Red T-Shirt',
+    description: "This T-Shirt is red and it's pretty awesome!",
+    score: 1.7999999999999998,
+  },
+];
+
+db.products.find(
+  { $text: { $search: 'awesome t-shirt' } },
+  { score: { $meta: 'textScore' } }
+);
+[
+  {
+    _id: ObjectId('666475bf00f622191cee651b'),
+    title: 'Red T-Shirt',
+    description: "This T-Shirt is red and it's pretty awesome!",
+    score: 1.7999999999999998,
+  },
+  {
+    _id: ObjectId('666475bf00f622191cee651a'),
+    title: 'A Book',
+    description: 'This is an awesome book a young artist!',
+    score: 0.625,
+  },
+];

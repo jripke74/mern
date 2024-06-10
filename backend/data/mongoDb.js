@@ -794,3 +794,5 @@ db.products.find(
     score: 6.666666666666667,
   },
 ];
+
+db.ratings.createIndex({ age: 1 }, { background: true });

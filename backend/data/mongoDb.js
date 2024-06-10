@@ -771,3 +771,13 @@ db.products.find(
     score: 0.625,
   },
 ];
+
+b.products.createIndex({ title: 'text', description: 'text' });
+db.products.find({ $text: { $search: 'ship' } });
+[
+  {
+    _id: ObjectId('6667230800f622191cee651c'),
+    title: 'A Ship',
+    decription: 'Floats perfectly!',
+  },
+];

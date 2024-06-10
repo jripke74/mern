@@ -1,7 +1,7 @@
 let userInput = document.getElementById('user-input').value;
 const checkBtn = document.getElementById('check-btn');
 const clearBtn = document.getElementById('clear-btn');
-let resultsDiv = document.getElementById('results-div');
+let resultsDiv = document.getElementById('results-div').value;
 
 checkBtn.addEventListener('click', (event) => {
   if (userInput === '') {
@@ -10,6 +10,6 @@ checkBtn.addEventListener('click', (event) => {
 });
 
 clearBtn.addEventListener('click', (event) => {
-  userInput = '';
-  resultsDiv = '';
+  userInput.innerHTML = '';
+  resultsDiv.innerHTML = '';
 });

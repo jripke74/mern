@@ -781,3 +781,16 @@ db.products.find({ $text: { $search: 'ship' } });
     decription: 'Floats perfectly!',
   },
 ];
+
+db.products.find(
+  { $text: { $search: 'red' } },
+  { score: { $meta: 'textScore' } }
+);
+[
+  {
+    _id: ObjectId('666475bf00f622191cee651b'),
+    title: 'Red T-Shirt',
+    description: "This T-Shirt is red and it's pretty awesome!",
+    score: 6.666666666666667,
+  },
+];

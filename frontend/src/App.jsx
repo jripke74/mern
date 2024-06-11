@@ -38,6 +38,7 @@ import PlacePickerModal from './components/place-picker/PlacePickerModal.jsx';
 import DeleteConfirmation from './components/place-picker/DeleteConfirmation.jsx';
 import logoImg from './components/place-picker/assets/logo3.png';
 import Modal from './components/place-picker/PlacePickerModal.jsx';
+import { sortPlacesByDistance } from './components/place-picker/loc.js';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 
@@ -120,6 +121,14 @@ function App() {
     annualInvestment: 1200,
     expectedReturn: 6,
     duration: 10,
+  });
+
+  navigator.geolocation.getCurrentPosition((position) => {
+    const sortedPlaces = sortPlacesByDistance(
+      AVAILABLE_PLACES,
+      position.coords.latitude,
+      position.coords.longitude
+    );
   });
 
   function handleStartRemovePlace(id) {

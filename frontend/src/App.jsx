@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useRef } from 'react';
+import React, { Suspense, useState, useRef, useEffect } from 'react';
 import {
   BrowserRouter as Routes,
   Route,
@@ -124,15 +124,17 @@ function App() {
     duration: 10,
   });
 
-  navigator.geolocation.getCurrentPosition((position) => {
-    const sortedPlaces = sortPlacesByDistance(
-      AVAILABLE_PLACES,
-      position.coords.latitude,
-      position.coords.longitude
-    );
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const sortedPlaces = sortPlacesByDistance(
+        AVAILABLE_PLACES,
+        position.coords.latitude,
+        position.coords.longitude
+      );
 
-    setAvailablePlaces(sortedPlaces);
-  });
+      setAvailablePlaces(sortedPlaces);
+    });
+  }, []);
 
   function handleStartRemovePlace(id) {
     modal.current.open();
@@ -361,6 +363,7 @@ function App() {
               <Places
                 title="Available Places"
                 places={availablePlaces}
+                fallBackText="Sorting places by distance..."
                 onSelectPlace={handleSelectPlace}
               />
             </main>

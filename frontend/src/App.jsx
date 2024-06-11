@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useRef } from 'react';
 import {
   BrowserRouter as Routes,
   Route,
@@ -32,8 +32,15 @@ import Shop from './components/cloth-shop/Shop.jsx';
 import Product from './components/cloth-shop/Product.jsx';
 import { DUMMY_PRODUCTS } from './components/cloth-shop/dummy-products.js';
 import CartContextProvider from './store/shopping-cart-context.jsx';
+import Places from './components/place-picker/Places.jsx';
+import { AVAILABLE_PLACES } from './components/place-picker/data.js';
+import PlacePickerModal from './components/place-picker/PlacePickerModal.jsx';
+import DeleteConfirmation from './components/place-picker/DeleteConfirmation.jsx';
+import logoImg from './components/place-picker/assets/logo3.png';
+import Modal from './components/place-picker/PlacePickerModal.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
+
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
 const UserPlaces = React.lazy(() => import('./places/pages/UpdatePlace.jsx'));
 const UpdatePlace = React.lazy(() => import('./places/pages/UpdatePlace.jsx'));
@@ -97,6 +104,9 @@ function derivedWinner(gameBoard, players) {
 }
 
 function App() {
+  const modal = useRef();
+  const selectedPlace = useRef();
+  const [pickedPlaces, setPickedPlaces] = useState([]);
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
@@ -111,6 +121,32 @@ function App() {
     expectedReturn: 6,
     duration: 10,
   });
+
+  function handleStartRemovePlace(id) {
+    modal.current.open();
+    selectedPlace.current = id;
+  }
+
+  function handleStopRemovePlace() {
+    modal.current.close();
+  }
+
+  function handleSelectPlace(id) {
+    setPickedPlaces((prevPickedPlaces) => {
+      if (prevPickedPlaces.some((places) => places.id === id)) {
+        return prevPickedPlaces;
+      }
+      const place = AVAILABLE_PLACES.find((place) => place.id === id);
+      return [place, ...prevPickedPlaces];
+    });
+  }
+
+  function handleRemovePlace() {
+    setPickedPlaces((prevPickedPlaces) =>
+      prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
+    );
+    modal.current.close();
+  }
 
   function handleAddTask(text) {
     setProjectsState((prevState) => {
@@ -283,6 +319,40 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/place-picker">
+          <>
+            <Modal ref={modal}>
+              <DeleteConfirmation
+                onCancel={handleStopRemovePlace}
+                onConfirm={handleRemovePlace}
+              />
+            </Modal>
+
+            <header>
+              <img src={logoImg} alt="Stylized globe" />
+              <h1>PlacePicker</h1>
+              <p>
+                Create your personal collection of places you would like to
+                visit or you have visited.
+              </p>
+            </header>
+            <main>
+              <Places
+                title="I'd like to visit..."
+                fallBackText={
+                  'Select the places you would like to visit below.'
+                }
+                places={pickedPlaces}
+                onSelectPlace={handleStartRemovePlace}
+              />
+              <Places
+                title="Available Places"
+                places={AVAILABLE_PLACES}
+                onSelectPlace={handleSelectPlace}
+              />
+            </main>
+          </>
         </Route>
         <Route path="/cloth-shop">
           <CartContextProvider>

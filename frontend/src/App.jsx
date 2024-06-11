@@ -107,6 +107,7 @@ function derivedWinner(gameBoard, players) {
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
+  const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState([]);
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
@@ -129,6 +130,8 @@ function App() {
       position.coords.latitude,
       position.coords.longitude
     );
+
+    setAvailablePlaces(sortedPlaces);
   });
 
   function handleStartRemovePlace(id) {
@@ -357,7 +360,7 @@ function App() {
               />
               <Places
                 title="Available Places"
-                places={AVAILABLE_PLACES}
+                places={availablePlaces}
                 onSelectPlace={handleSelectPlace}
               />
             </main>

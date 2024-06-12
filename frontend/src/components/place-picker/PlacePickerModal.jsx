@@ -12,7 +12,7 @@ function Modal({ open, children }) {
     } else {
       dialog.current.close();
     }
-  }, []);
+  }, [open]);
 
   return createPortal(
     <dialog className={classes.modal} ref={dialog}>

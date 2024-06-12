@@ -1,4 +1,10 @@
-import React, { Suspense, useState, useRef, useEffect } from 'react';
+import React, {
+  Suspense,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from 'react';
 import {
   BrowserRouter as Routes,
   Route,
@@ -168,7 +174,7 @@ function App() {
     }
   }
 
-  function handleRemovePlace() {
+  const handleRemovePlace = useCallback(function handleRemovePlace() {
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
@@ -179,7 +185,7 @@ function App() {
       'selectedPlaces',
       JSON.stringify(storedIds.filter((id) => id !== selectedPlace.current))
     );
-  }
+  }, []);
 
   function handleAddTask(text) {
     setProjectsState((prevState) => {

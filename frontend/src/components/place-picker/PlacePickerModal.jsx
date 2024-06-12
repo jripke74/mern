@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 import classes from './PlacePickerModal.module.css';
 
-function Modal({ open, children }) {
+function Modal({ open, children, onClose }) {
   const dialog = useRef();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function Modal({ open, children }) {
   }, [open]);
 
   return createPortal(
-    <dialog className={classes.modal} ref={dialog}>
+    <dialog className={classes.modal} ref={dialog} onClose={onClose}>
       {children}
     </dialog>,
     document.getElementById('modal')

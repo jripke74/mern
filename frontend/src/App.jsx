@@ -355,7 +355,7 @@ function App() {
         </Route>
         <Route path="/place-picker">
           <>
-            <Modal open={modalIsOpen}>
+            <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
               <DeleteConfirmation
                 onCancel={handleStopRemovePlace}
                 onConfirm={handleRemovePlace}

@@ -6,8 +6,10 @@ import classes from './PlacePickerModal.module.css';
 function Modal({ open, children }) {
   const dialog = useRef();
 
+  dialog.current.showModal();
+
   return createPortal(
-    <dialog className={classes.modal} ref={dialog} open={open}>
+    <dialog className={classes.modal} ref={dialog}>
       {children}
     </dialog>,
     document.getElementById('modal')

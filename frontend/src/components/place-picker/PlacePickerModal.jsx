@@ -16,7 +16,7 @@ function Modal({ open, children, onClose }) {
 
   return createPortal(
     <dialog className={classes.modal} ref={dialog} onClose={onClose}>
-      {children}
+      {open ? children : null}
     </dialog>,
     document.getElementById('modal')
   );

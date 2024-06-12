@@ -1,6 +1,10 @@
 import classes from './DeleteCofirmation.module.css';
 
 export default function DeleteConfirmation({ onConfirm, onCancel }) {
+  setTimeout(() => {
+    onConfirm();
+  }, 3000);
+
   return (
     <div id={classes['delete-confirmation']}>
       <h2>Are you sure?</h2>

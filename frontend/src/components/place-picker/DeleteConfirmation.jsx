@@ -1,9 +1,17 @@
+import { useEffect } from 'react';
+
 import classes from './DeleteCofirmation.module.css';
 
 export default function DeleteConfirmation({ onConfirm, onCancel }) {
-  setTimeout(() => {
-    onConfirm();
-  }, 3000);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onConfirm();
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <div id={classes['delete-confirmation']}>

@@ -796,3 +796,8 @@ db.products.find(
 ];
 
 db.ratings.createIndex({ age: 1 }, { background: true });
+
+db.places.insertOne({
+  name: 'California Academy of Scieces',
+  location: { type: 'Point', coordinates: [-122.4729481, 37.769933] },
+});

@@ -801,3 +801,21 @@ db.places.insertOne({
   name: 'California Academy of Scieces',
   location: { type: 'Point', coordinates: [-122.4729481, 37.769933] },
 });
+
+db.places.createIndex({ location: '2dsphere' }); // index geospational
+db.places.find({
+  location: {
+    $near: {
+      $geometry: { type: 'Point', coordinates: [-122.471114, 37.771104] },
+    },
+  },
+});
+db.places.find({
+  location: {
+    $near: {
+      $geometry: { type: 'Point', coordinates: [-122.471114, 37.771104] },
+      $maxDistance: 440,
+      $minDistance: 10,
+    },
+  },
+});

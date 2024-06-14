@@ -833,3 +833,52 @@ db.places.find({
     },
   },
 });
+
+db.areas.insertOne({
+  name: 'Golden Gate Park',
+  area: { type: 'Polygon', coordinates: [[p1, p2, p3, p4, p1]] },
+});
+db.areas.find()[
+  {
+    _id: ObjectId('666c630cd0f4d66dba54eb5a'),
+    name: 'Golden Gate Park',
+    area: {
+      type: 'Polygon',
+      coordinates: [
+        [
+          [-122.4547, 37.77473],
+          [-122.45303, 37.76641],
+          [-122.51026, 37.76411],
+          [-122.51088, 37.77131],
+          [-122.4547, 37.77473],
+        ],
+      ],
+    },
+  }
+];
+
+db.areas.find({
+  area: {
+    $geoIntersects: {
+      $geometry: { type: 'Point', coordinates: [-122.49089, 37.76992] },
+    },
+  },
+});
+[
+  {
+    _id: ObjectId('666c630cd0f4d66dba54eb5a'),
+    name: 'Golden Gate Park',
+    area: {
+      type: 'Polygon',
+      coordinates: [
+        [
+          [-122.4547, 37.77473],
+          [-122.45303, 37.76641],
+          [-122.51026, 37.76411],
+          [-122.51088, 37.77131],
+          [-122.4547, 37.77473],
+        ],
+      ],
+    },
+  },
+];

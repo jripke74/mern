@@ -819,3 +819,5 @@ db.places.find({
     },
   },
 });
+
+db.places.deleteOne({ _id: ObjectId('666b6435d0f4d66dba54eb55') });

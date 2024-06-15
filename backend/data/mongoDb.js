@@ -103,7 +103,7 @@ db.users.insertMany([
       { title: 'Sports', frequency: 3 },
       { title: 'Cooking', frequency: 6 },
     ],
-    phone: 0131782734,
+    phone: 131782734,
   },
   {
     name: 'Manuel',
@@ -882,3 +882,8 @@ db.areas.find({
     },
   },
 ];
+
+db.places.insertOne({
+  name: 'Beergarden',
+  loc: { type: 'Point', coordinates: [11.59228, 48.15203] },
+});

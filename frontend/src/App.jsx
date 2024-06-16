@@ -40,11 +40,11 @@ import { DUMMY_PRODUCTS } from './components/cloth-shop/dummy-products.js';
 import CartContextProvider from './store/shopping-cart-context.jsx';
 import Places from './components/place-picker/Places.jsx';
 import { AVAILABLE_PLACES } from './components/place-picker/data.js';
-import PlacePickerModal from './components/place-picker/PlacePickerModal.jsx';
 import DeleteConfirmation from './components/place-picker/DeleteConfirmation.jsx';
 import logoImg from './components/place-picker/assets/logo3.png';
 import Modal from './components/place-picker/PlacePickerModal.jsx';
 import { sortPlacesByDistance } from './components/place-picker/loc.js';
+import QuizHeader from './components/quiz-app/QuizHeader';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 
@@ -358,6 +358,11 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/quiz-app">
+          <>
+            <QuizHeader />
+          </>
         </Route>
         <Route path="/place-picker">
           <>

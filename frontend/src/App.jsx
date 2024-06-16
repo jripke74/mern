@@ -44,7 +44,8 @@ import DeleteConfirmation from './components/place-picker/DeleteConfirmation.jsx
 import logoImg from './components/place-picker/assets/logo3.png';
 import Modal from './components/place-picker/PlacePickerModal.jsx';
 import { sortPlacesByDistance } from './components/place-picker/loc.js';
-import QuizHeader from './components/quiz-app/QuizHeader';
+import QuizHeader from './components/quiz-app/QuizHeader.jsx';
+import Quiz from './components/quiz-app/Quiz.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 
@@ -362,6 +363,9 @@ function App() {
         <Route path="/quiz-app">
           <>
             <QuizHeader />
+            <main>
+              <Quiz />
+            </main>
           </>
         </Route>
         <Route path="/place-picker">

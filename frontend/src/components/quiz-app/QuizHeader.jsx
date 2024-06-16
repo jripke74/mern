@@ -3,7 +3,7 @@ import classes from './QuizHeader.module.css';
 
 export default function Header() {
   return (
-    <header>
+    <header id={classes['quiz-header']}>
       <img src={quizLogo} alt="Quiz Logo" />
       <h1>ReactQuiz</h1>
     </header>

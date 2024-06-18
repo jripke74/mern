@@ -19,7 +19,7 @@ export default function Quiz() {
 
   if (quizIsComplete) {
     return (
-      <div className={classes.summary}>
+      <div id={classes.summary}>
         <img src={quizCompleteImg} alt="Trophy icon" />
         <h2>Quiz Completed!</h2>
       </div>

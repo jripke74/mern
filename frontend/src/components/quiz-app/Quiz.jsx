@@ -1,11 +1,9 @@
 import { useState, useCallback } from 'react';
 
 import QUESTIONS from './assets/questions.js';
-import QuestionTimer from './QuestionTimer.jsx';
-import quizCompleteImg from './assets/quiz-complete.png';
-import Answers from './Answers.jsx';
 import classes from './Quiz.module.css';
 import Question from './Question.jsx';
+import Summary from './Summary.jsx';
 
 export default function Quiz() {
   const [userAnswers, setUserAnswer] = useState([]);
@@ -27,12 +25,7 @@ export default function Quiz() {
   });
 
   if (quizIsComplete) {
-    return (
-      <div id={classes.summary}>
-        <img src={quizCompleteImg} alt="Trophy icon" />
-        <h2>Quiz Completed!</h2>
-      </div>
-    );
+    return <Summary userAnswers={userAnswers} />;
   }
 
   return (

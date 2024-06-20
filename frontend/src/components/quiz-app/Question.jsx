@@ -11,7 +11,7 @@ export default function Question({ index, onSelectAnswer, onSkipAnswer }) {
     isCorrect: null,
   });
 
-  let timer = 1000;
+  let timer = 10000;
 
   if (answer.selectedAnswer) {
     timer = 1000;

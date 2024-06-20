@@ -22,14 +22,14 @@ export default function Answers({
         let cssClass = '';
 
         if (answerState === 'answered' && isSeleceted) {
-          cssClass = classes.selected;
+          cssClass = ` ${classes.selected}`;
         }
 
         if (
           (answerState === 'correct' || answerState === 'wrong') &&
           isSeleceted
         ) {
-          cssClass = answerState;
+          cssClass = ` ${classes[answerState]}`;
         }
 
         return (

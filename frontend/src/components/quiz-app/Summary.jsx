@@ -20,7 +20,7 @@ export default function Summary({ userAnswers }) {
 
   return (
     <div id={classes.summary}>
-      <img src={quizCompleteImg} alt="Trophy icon" />
+      <img src={quizCompleteImg} alt="Trophy icon for quiz" />
       <h2>Quiz Completed!</h2>
       <div id={classes['summary-stats']}>
         <p>

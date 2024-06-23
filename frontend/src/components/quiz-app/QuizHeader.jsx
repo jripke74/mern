@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header id={classes['quiz-header']}>
       <img src={quizLogo} alt="Quiz Logo" />
-      <h1>ReactQuiz</h1>
+      <h1>React Quiz</h1>
     </header>
   );
 }

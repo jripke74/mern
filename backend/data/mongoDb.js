@@ -914,3 +914,9 @@ db.persons.aggregate([
   { _id: { state: 'pará' }, totalPerson: 3 },
   { _id: { state: 'hamburg' }, totalPerson: 12 },
 ];
+
+db.persons.aggregate([
+  { $match: { gender: 'female' } },
+  { $group: { _id: { state: '$location.state' }, totalPerson: { $sum: 1 } } },
+  { $sort: { totalPersons: -1 } },
+]);

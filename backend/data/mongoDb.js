@@ -887,3 +887,30 @@ db.places.insertOne({
   name: 'Beergarden',
   loc: { type: 'Point', coordinates: [11.59228, 48.15203] },
 });
+
+db.persons.aggregate([
+  { $match: { gender: 'female' } },
+  { $group: { _id: { state: '$location.state' }, totalPerson: { $sum: 1 } } },
+]);
+[
+  { _id: { state: 'minas gerais' }, totalPerson: 4 },
+  { _id: { state: 'galway city' }, totalPerson: 6 },
+  { _id: { state: 'solothurn' }, totalPerson: 4 },
+  { _id: { state: 'tennessee' }, totalPerson: 3 },
+  { _id: { state: 'ardèche' }, totalPerson: 1 },
+  { _id: { state: 'iowa' }, totalPerson: 4 },
+  { _id: { state: 'val-de-marne' }, totalPerson: 3 },
+  { _id: { state: 'new mexico' }, totalPerson: 3 },
+  { _id: { state: 'rogaland' }, totalPerson: 10 },
+  { _id: { state: 'niedersachsen' }, totalPerson: 3 },
+  { _id: { state: 'appenzell ausserrhoden' }, totalPerson: 5 },
+  { _id: { state: 'bolu' }, totalPerson: 2 },
+  { _id: { state: 'gisborne' }, totalPerson: 7 },
+  { _id: { state: 'limburg' }, totalPerson: 14 },
+  { _id: { state: 'şanlıurfa' }, totalPerson: 6 },
+  { _id: { state: 'basel-landschaft' }, totalPerson: 8 },
+  { _id: { state: 'creuse' }, totalPerson: 3 },
+  { _id: { state: 'oppland' }, totalPerson: 3 },
+  { _id: { state: 'pará' }, totalPerson: 3 },
+  { _id: { state: 'hamburg' }, totalPerson: 12 },
+];

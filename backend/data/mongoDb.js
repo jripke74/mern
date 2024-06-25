@@ -1055,3 +1055,7 @@ db.persons.aggregate([
   },
   { $sort: { numPersons: -1 } },
 ]);
+
+db.friends.aggregate([
+  { $group: { _id: { age: '$age' }, allHobbies: { $push: '$hobbies' } } },
+]);

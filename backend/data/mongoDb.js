@@ -962,3 +962,85 @@ db.persons.aggregate([
     },
   },
 ]);
+// returns:
+[
+  { gender: 'male', fullName: 'Carl Jacobs' },
+  { gender: 'female', fullName: 'پریا پارسا' },
+  { gender: 'female', fullName: 'Madeleine Till' },
+  { gender: 'male', fullName: 'Victor Pedersen' },
+  { gender: 'female', fullName: 'Shona Kemperman' },
+  { gender: 'female', fullName: 'Louise Graham' },
+  { gender: 'male', fullName: 'Isolino Viana' },
+  { gender: 'female', fullName: 'Mestan Kaplangı' },
+  { gender: 'female', fullName: 'Katie Welch' },
+  { gender: 'female', fullName: 'Sandra Lorenzo' },
+  { gender: 'male', fullName: 'بنیامین سالاری' },
+  { gender: 'female', fullName: 'Andreia Arnaud' },
+  { gender: 'female', fullName: 'Anaëlle Adam' },
+  { gender: 'female', fullName: 'Delia Durand' },
+  { gender: 'female', fullName: 'Anne Ruiz' },
+  { gender: 'male', fullName: 'Harvey Chambers' },
+  { gender: 'male', fullName: 'Elijah Lewis' },
+  { gender: 'male', fullName: 'Alfred Jensen' },
+  { gender: 'female', fullName: 'Aya Liland' },
+  { gender: 'male', fullName: 'Gideon Van drongelen' },
+];
+
+db.persons.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      email: 1,
+      location: {
+        type: 'Point',
+        coordinates: [
+          {
+            $convert: {
+              input: '$location.coordinates.longitude',
+              to: 'double',
+              onError: 0.0,
+              onNull: 0.0,
+            },
+          },
+          {
+            $convert: {
+              input: '$location.coordinates.latitude',
+              to: 'double',
+              onError: 0.0,
+              onNull: 0.0,
+            },
+          },
+        ],
+      },
+    },
+  },
+  {
+    $project: {
+      gender: 1,
+      email: 1,
+      location: 1,
+      fullName: {
+        $concat: [
+          { $toUpper: { $substrCP: ['$name.first', 0, 1] } },
+          {
+            $substrCP: [
+              '$name.first',
+              1,
+              { $subtract: [{ $strLenCP: '$name.first' }, 1] },
+            ],
+          },
+          ' ',
+          { $toUpper: { $substrCP: ['$name.last', 0, 1] } },
+          {
+            $substrCP: [
+              '$name.last',
+              1,
+              { $subtract: [{ $strLenCP: '$name.last' }, 1] },
+            ],
+          },
+        ],
+      },
+    },
+  },
+]);

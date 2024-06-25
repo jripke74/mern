@@ -992,6 +992,8 @@ db.persons.aggregate([
       _id: 0,
       name: 1,
       email: 1,
+      birthdate: { $toDate: { input: '$dob.date' } },
+      age: '$dob.age',
       location: {
         type: 'Point',
         coordinates: [
@@ -1020,6 +1022,8 @@ db.persons.aggregate([
       gender: 1,
       email: 1,
       location: 1,
+      birthdate: 1,
+      age: 1,
       fullName: {
         $concat: [
           { $toUpper: { $substrCP: ['$name.first', 0, 1] } },

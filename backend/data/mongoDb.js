@@ -992,7 +992,7 @@ db.persons.aggregate([
       _id: 0,
       name: 1,
       email: 1,
-      birthdate: { $toDate: { input: '$dob.date' } },
+      birthdate: { $toDate: '$dob.date' },
       age: '$dob.age',
       location: {
         type: 'Point',
@@ -1047,4 +1047,11 @@ db.persons.aggregate([
       },
     },
   },
+  {
+    $group: {
+      _id: { birthYear: { $isoWeekYear: '$birthdate' } },
+      numPersons: { $sum: 1 },
+    },
+  },
+  { $sort: { numPersons: -1 } },
 ]);

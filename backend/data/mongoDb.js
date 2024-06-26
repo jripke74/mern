@@ -1058,5 +1058,24 @@ db.persons.aggregate([
 
 db.friends.aggregate([
   { $unwind: '$hobbies' },
-  { $group: { _id: { age: '$age' }, allHobbies: { $push: '$hobbies' } } },
+  { $group: { _id: { age: '$age' }, allHobbies: { $addToSet: '$hobbies' } } },
+]);
+
+db.friends.aggregate([
+  { $project: { _id: 0, examScore: { $slice: ['$examScores', 1] } } },
+]);
+
+db.friends.aggregate([
+  {
+    $project: {
+      _id: 0,
+      examScore: {
+        $filter: {
+          input: '$examScores',
+          as: 'sc',
+          cond: { $gt: ['$$sc.score', 60] },
+        },
+      },
+    },
+  },
 ]);

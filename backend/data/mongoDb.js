@@ -1133,3 +1133,20 @@ db.persons.aggregate([
   { $skip: 10 },
   { $limit: 10 },
 ]);
+
+db.transformedPersons.createIndex({ location: '2dsphere' });
+
+db.transformedPersons.aggregate([
+  {
+    $geoNear: {
+      near: {
+        type: 'Point',
+        coordinates: [-18.4, -42.8],
+      },
+      maxDistance: 1000,
+      $limit: 10,
+      query: { age: { $gt: 30 } },
+      distanceField: 'distance',
+    },
+  },
+]);

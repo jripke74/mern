@@ -46,6 +46,9 @@ import Modal from './components/place-picker/PlacePickerModal.jsx';
 import { sortPlacesByDistance } from './components/place-picker/loc.js';
 import QuizHeader from './components/quiz-app/QuizHeader.jsx';
 import Quiz from './components/quiz-app/Quiz.jsx';
+import CounterHeader from './components/counter-app/CounterHeader';
+import Counter from './components/counter-app/Counter.jsx';
+import { log } from './components/counter-app/log.js';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 
@@ -118,6 +121,8 @@ const storedPlaces = storedIds.map((id) =>
 
 function App() {
   const selectedPlace = useRef();
+  const [enteredNumber, setEnteredNumber] = useState(0);
+  const [chosenCount, setChosenCount] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
@@ -147,6 +152,15 @@ function App() {
       setAvailablePlaces(sortedPlaces);
     });
   }, []);
+
+  function handleChange(event) {
+    setEnteredNumber(+event.target.value);
+  }
+
+  function handleSetClick() {
+    setChosenCount(enteredNumber);
+    setEnteredNumber(0);
+  }
 
   function handleStartRemovePlace(id) {
     setModalIsOpen(true);
@@ -359,6 +373,23 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <Users />
+        </Route>
+        <Route path="/counter-app">
+          <>
+            <Header />
+            <main>
+              <section id="configure-counter">
+                <h2>Set Counter</h2>
+                <input
+                  type="number"
+                  onChange={handleChange}
+                  value={enteredNumber}
+                />
+                <button onClick={handleSetClick}>Set</button>
+              </section>
+              <Counter />
+            </main>
+          </>
         </Route>
         <Route path="/quiz-app">
           <>

@@ -1,15 +1,15 @@
-let userInput = document.getElementById('user-input').value;
+let userInput = document.getElementById('user-input');
 const checkBtn = document.getElementById('check-btn');
 const clearBtn = document.getElementById('clear-btn');
-let resultsDiv = document.getElementById('results-div').value;
+let resultsDiv = document.getElementById('results-div');
 
 checkBtn.addEventListener('click', (event) => {
-  if (userInput === '') {
+  if (userInput.innerText === '') {
     alert('Please provide a phone number');
   }
 });
 
 clearBtn.addEventListener('click', (event) => {
-  userInput.innerHTML = '';
-  resultsDiv.innerHTML = '';
+  userInput.value = '';
+  resultsDiv.innerText = '';
 });

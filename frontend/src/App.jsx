@@ -387,7 +387,7 @@ function App() {
                 />
                 <button onClick={handleSetClick}>Set</button>
               </section>
-              <Counter />
+              <Counter initialCount={chosenCount} />
             </main>
           </>
         </Route>

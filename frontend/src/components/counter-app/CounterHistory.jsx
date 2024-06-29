@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { log } from './log.js';
+import classes from './CounterHistory.module.css';
 
 function HistoryItem({ count }) {
   log('<HistoryItem /> rendered', 3);
@@ -12,7 +13,10 @@ function HistoryItem({ count }) {
   }
 
   return (
-    <li onClick={handleClick} className={selected ? 'selected' : undefined}>
+    <li
+      onClick={handleClick}
+      className={selected ? classes.selected : undefined}
+    >
       {count}
     </li>
   );

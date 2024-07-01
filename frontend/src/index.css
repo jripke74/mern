@@ -233,6 +233,81 @@ ol {
   padding: 0;
 }
 
+.button {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #16f3eb;
+  color: #051a19;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.button-icon {
+  color: #051a19;
+  height: 0.9rem;
+}
+
+section {
+  margin: 2rem 0;
+}
+
+#configure-counter {
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid #05827e;
+  border-radius: 6px;
+  text-align: center;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+#configure-counter h2 {
+  margin: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #88dbd6;
+}
+
+#configure-counter input {
+  width: 4rem;
+  text-align: center;
+  margin: 0.5rem;
+  padding: 0.5rem 0.25rem;
+  border: 1px solid #88dbd6;
+  border-radius: 4px;
+  background-color: #0e1a1c;
+  color: #88dbd6;
+  font-size: 1rem;
+}
+
+#configure-counter input::-webkit-outer-spin-button,
+#configure-counter input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+#configure-counter input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+#configure-counter button {
+  cursor: pointer;
+  background: transparent;
+  color: #96d8d6;
+  border: none;
+}
+
+#configure-counter button:hover {
+  color: #16f3eb;
+}
+
 #pre-game {
   text-align: center;
 }

@@ -1,4 +1,4 @@
-import { log } from '../../../log.js';
+import { log } from '../log.js';
 
 export default function ArrowRightIcon(props) {
   log('<ArrowRightIcon /> rendered', 3);

@@ -120,6 +120,7 @@ const storedPlaces = storedIds.map((id) =>
 );
 
 function App() {
+  log('<App /> rendered');
   const selectedPlace = useRef();
   const [enteredNumber, setEnteredNumber] = useState(0);
   const [chosenCount, setChosenCount] = useState(0);

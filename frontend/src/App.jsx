@@ -376,7 +376,7 @@ function App() {
         </Route>
         <Route path="/counter-app">
           <>
-            <Header />
+            <CounterHeader />
             <main>
               <section id="configure-counter">
                 <h2>Set Counter</h2>

@@ -1,0 +1,25 @@
+#main-header {
+  margin: 2rem auto;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  color: #87a7a4;
+}
+
+#main-header img {
+  width: 6rem;
+  height: 6rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(14, 26, 28, 0.8));
+}
+
+#main-header h1 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.15rem;
+}
+
+main {
+  width: 90%;
+  max-width: 50rem;
+  margin: 2rem auto;
+}

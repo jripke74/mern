@@ -3,7 +3,7 @@ import logoImg from './assets/logo.png';
 import classes from './CounterHeader.module.css';
 
 export default function Header() {
-  log('<Header /> rendered', 1);
+  log('<CounterHeader /> rendered', 1);
 
   return (
     <header id={classes['main-header']}>

@@ -48,6 +48,7 @@ import QuizHeader from './components/quiz-app/QuizHeader.jsx';
 import Quiz from './components/quiz-app/Quiz.jsx';
 import CounterHeader from './components/counter-app/CounterHeader';
 import Counter from './components/counter-app/Counter.jsx';
+import ConfigureCounter from './components/counter-app/ConfigureCounter.jsx';
 import { log } from './components/counter-app/log.js';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
@@ -122,7 +123,6 @@ const storedPlaces = storedIds.map((id) =>
 function App() {
   log('<App /> rendered');
   const selectedPlace = useRef();
-  const [enteredNumber, setEnteredNumber] = useState(0);
   const [chosenCount, setChosenCount] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [availablePlaces, setAvailablePlaces] = useState([]);
@@ -154,13 +154,8 @@ function App() {
     });
   }, []);
 
-  function handleChange(event) {
-    setEnteredNumber(+event.target.value);
-  }
-
-  function handleSetClick() {
-    setChosenCount(enteredNumber);
-    setEnteredNumber(0);
+  function handleSetCount(newCount) {
+    setChosenCount(newCount);
   }
 
   function handleStartRemovePlace(id) {
@@ -379,15 +374,7 @@ function App() {
           <>
             <CounterHeader />
             <main>
-              <section id="configure-counter">
-                <h2>Set Counter</h2>
-                <input
-                  type="number"
-                  onChange={handleChange}
-                  value={enteredNumber}
-                />
-                <button onClick={handleSetClick}>Set</button>
-              </section>
+              <ConfigureCounter onSet={handleSetCount} />
               <Counter initialCount={chosenCount} />
             </main>
           </>

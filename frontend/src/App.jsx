@@ -157,6 +157,7 @@ function App() {
     });
   }, []);
 
+  // final-countdown
   function handleSetCount(newCount) {
     setChosenCount(newCount);
   }

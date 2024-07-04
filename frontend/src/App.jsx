@@ -123,7 +123,10 @@ const storedPlaces = storedIds.map((id) =>
 function App() {
   log('<App /> rendered');
   const selectedPlace = useRef();
+
+  // final-countdown
   const [chosenCount, setChosenCount] = useState(0);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);

@@ -162,6 +162,7 @@ function App() {
     setChosenCount(newCount);
   }
 
+  // place-picker
   function handleStartRemovePlace(id) {
     setModalIsOpen(true);
     selectedPlace.current = id;

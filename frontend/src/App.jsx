@@ -229,6 +229,7 @@ function App() {
     });
   }
 
+  // project-tracker
   function handleSelectProject(id) {
     setProjectsState((prevState) => {
       return {

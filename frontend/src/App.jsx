@@ -160,6 +160,7 @@ function App() {
   // final-countdown
   function handleSetCount(newCount) {
     setChosenCount(newCount);
+    setChosenCount((prevChosenCount) => prevChosenCount + 1);
   }
 
   // place-picker
@@ -382,7 +383,7 @@ function App() {
             <CounterHeader />
             <main>
               <ConfigureCounter onSet={handleSetCount} />
-              <Counter initialCount={chosenCount} />
+              <Counter key={chosenCount} initialCount={chosenCount} />
               <Counter initialCount={0} />
             </main>
           </>

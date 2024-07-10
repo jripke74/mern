@@ -1153,3 +1153,5 @@ db.transformedPersons.aggregate([
 
 db.createUser({ user: 'jeff', pwd: 'jeff', roles: ['userAdminAnyDatabase'] });
 db.auth('jeff', 'jeff');
+
+// sudo mongod --auth --fork --directoryperdb --dbpath /Users/jeff/Library/Mobile\ Documents/com~apple~CloudDocs/training/software-developement/training/academind/react-nodejs-express-and-mongodb-the-mern-fullstack-guide/code/mern/backend/data/mongoDb/data --logpath /Users/jeff/Library/Mobile\ Documents/com~apple~CloudDocs/training/software-developement/training/academind/react-nodejs-express-and-mongodb-the-mern-fullstack-guide/code/mern/backend/data/mongoDb/logs/mongo.log

@@ -70,5 +70,5 @@ mongoose
     app.listen(process.env.PORT || 5003);
   })
   .catch((err) => {
-    console.log(err);
+    console.log(err, 'mongoose error:');
   });

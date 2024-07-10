@@ -1150,3 +1150,6 @@ db.transformedPersons.aggregate([
     },
   },
 ]);
+
+db.createUser({ user: 'jeff', pwd: 'jeff', roles: ['userAdminAnyDatabase'] });
+db.auth('jeff', 'jeff');

@@ -51,6 +51,13 @@ import Counter from './components/counter-app/Counter.jsx';
 import ConfigureCounter from './components/counter-app/ConfigureCounter.jsx';
 import { log } from './components/counter-app/log.js';
 
+// place-picker-app-2
+// import PlacesPicker from './components/place-picker-app-2/PlacesPicker.jsx';
+// import PlacesModal from './components/place-picker-app-2/PlacesModal.jsx';
+// import DeleteConfirmationPicker from './components/place-picker-app-2/DeleteConfirmationPicker.jsx';
+// import placesLogoImg from './components/place-picker-app-2/assets/logo.png';
+import AvailablePlaces from './components/place-picker/AvailablePlaces.jsx';
+
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
@@ -127,6 +134,7 @@ function App() {
   // final-countdown
   const [chosenCount, setChosenCount] = useState(0);
 
+  const [userPlaces, setUserPlaces] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
@@ -378,6 +386,7 @@ function App() {
         <Route path="/" exact>
           <Users />
         </Route>
+        <Route path="/place-picker-2-app"></Route>
         <Route path="/counter-app">
           <>
             <CounterHeader />
@@ -415,19 +424,13 @@ function App() {
             </header>
             <main>
               <Places
-                title="I'd like to visit..."
-                fallBackText={
-                  'Select the places you would like to visit below.'
-                }
-                places={pickedPlaces}
+                title="I'd like to visit ..."
+                fallbackText="Select the places you would like to visit below."
+                places={userPlaces}
                 onSelectPlace={handleStartRemovePlace}
               />
-              <Places
-                title="Available Places"
-                places={availablePlaces}
-                fallBackText="Sorting places by distance..."
-                onSelectPlace={handleSelectPlace}
-              />
+
+              <AvailablePlaces onSelectPlace={handleSelectPlace} />
             </main>
           </>
         </Route>

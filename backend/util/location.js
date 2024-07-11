@@ -1,8 +1,10 @@
-const AppleMaps = require('apple-maps-server-sdk').default;
+// import { default as AppleMaps } from 'apple-maps-server-sdk';
+import AppleMaps from 'apple-maps-server-sdk';
+import HttpError from '../models/http-error.js';
 
-const HttpError = require('../models/http-error');
+const Apple = AppleMaps.default;
 
-const appleMaps = new AppleMaps({
+const appleMaps = new Apple({
   authorizationToken: process.env.MAP_KIT,
 });
 
@@ -28,4 +30,4 @@ async function getCoordsForAddress(address) {
   return coordinates;
 }
 
-module.exports = getCoordsForAddress;
+export default getCoordsForAddress;

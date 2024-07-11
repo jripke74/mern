@@ -1,14 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+import fs from 'node:fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
-const placesRoutes = require('./routes/places-routes');
-const usersRoutes = require('./routes/users-routes');
-const HttpError = require('./models/http-error');
+import placesRoutes from './routes/places-routes.js';
+import usersRoutes from './routes/users-routes.js';
+import HttpError from './models/http-error.js';
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename); // get the name of the directory
 
 app.use(bodyParser.json());
 
@@ -39,7 +42,9 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/src')));
 
   app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, '../', 'frontend', 'src', 'App.jsx'))
+    res.sendFile(
+      path.resolve(__dirname, '../', 'frontend', 'public', 'index.html')
+    )
   );
 } else {
   app.get('/', (req, res) => res.send('Please set to production or dev'));
@@ -59,7 +64,7 @@ app.use((error, req, res, next) => {
   if (res.headerSent) {
     return next(error);
   }
-  const status = err.status || 500;
+  const status = error.status || 500;
   res.status(error.code || 500);
   res.json({ message: error.message || 'An unkown error occurred!' });
 });

@@ -1,11 +1,11 @@
-const { validationResult } = require('express-validator');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import { validationResult } from 'express-validator';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
-const HttpError = require('../models/http-error');
-const User = require('../models/user');
+import HttpError from '../models/http-error.js';
+import User from '../models/user.js';
 
-const getUsers = async (req, res, next) => {
+export const getUsers = async (req, res, next) => {
   let users;
   try {
     users = await User.find({}, '-password');
@@ -19,7 +19,7 @@ const getUsers = async (req, res, next) => {
   res.json({ users: users.map((user) => user.toObject({ getters: true })) });
 };
 
-const signup = async (req, res, next) => {
+export const signup = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -94,7 +94,7 @@ const signup = async (req, res, next) => {
     .json({ userId: createdUser.id, email: createdUser.email, token: token });
 };
 
-const login = async (req, res, next) => {
+export const login = async (req, res, next) => {
   const { email, password } = req.body;
 
   let existingUser;
@@ -157,7 +157,3 @@ const login = async (req, res, next) => {
     token: token,
   });
 };
-
-exports.getUsers = getUsers;
-exports.signup = signup;
-exports.login = login;

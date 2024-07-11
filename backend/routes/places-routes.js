@@ -1,9 +1,9 @@
-const { Router } = require('express');
-const { check } = require('express-validator');
+import Router from 'express';
+import { check } from 'express-validator';
 
-const placesControllers = require('../controllers/places-controller');
-const fileUpload = require('../middleware/file-upload');
-const checkAuth = require('../middleware/check-auth');
+import * as placesControllers from '../controllers/places-controller.js';
+import fileUpload from '../middleware/file-upload.js';
+import checkAuth from '../middleware/check-auth.js';
 
 const router = Router();
 
@@ -32,4 +32,4 @@ router.patch(
 
 router.delete('/:pid', placesControllers.deletePlace);
 
-module.exports = router;
+export default router;

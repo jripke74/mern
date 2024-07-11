@@ -1,8 +1,8 @@
-const { Router } = require('express');
-const { check } = require('express-validator');
+import Router from 'express';
+import { check } from 'express-validator';
 
-const usersController = require('../controllers/users-controllers');
-const fileUpload = require('../middleware/file-upload.js');
+import * as usersController from '../controllers/users-controllers.js';
+import fileUpload from '../middleware/file-upload.js';
 
 const router = Router();
 
@@ -21,4 +21,4 @@ router.post(
 
 router.post('/login', usersController.login);
 
-module.exports = router;
+export default router;

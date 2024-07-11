@@ -33,6 +33,24 @@ export const getPlaceById = async (req, res, next) => {
   res.json({ place: place.toObject({ getters: true }) });
 };
 
+export const places = async (req, res) => {
+  const fileContent = await fs.readFile('./data/places.json');
+  const placesData = JSON.parse(fileContent);
+  res.status(200).json({ places: placesData });
+};
+
+export const userPlaces = async (req, res) => {
+  const fileContent = await fs.readFile('./data/user-places.json');
+  const places = JSON.parse(fileContent);
+  res.status(200).json({ places });
+};
+
+export const userPlacesPut = async (req, res) => {
+  const places = req.body.places;
+  await fs.writeFile('./data/user-places.json', JSON.stringify(places));
+  res.status(200).json({ message: 'User places updated!' });
+};
+
 export const getPlacesByUserId = async (req, res, next) => {
   const userId = req.params.uid;
 

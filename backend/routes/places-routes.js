@@ -11,6 +11,12 @@ router.get('/:pid', placesControllers.getPlaceById);
 
 router.get('/user/:uid', placesControllers.getPlacesByUserId);
 
+router.get('/places', placesControllers.places);
+
+router.get('/user-places', placesControllers.userPlaces);
+
+router.put('/user-places', placesControllers.userPlacesPut);
+
 router.use(checkAuth);
 
 router.post(

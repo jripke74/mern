@@ -1,11 +1,11 @@
 import classes from './Places.module.css';
 
-export default function Places({ title, places, fallBackText, onSelectPlace }) {
+export default function Places({ title, places, fallbackText, onSelectPlace }) {
   return (
     <section className={classes['places-category']}>
       <h2>{title}</h2>
       {places.length === 0 && (
-        <p className={classes['fallback-text']}>{fallBackText}</p>
+        <p className={classes['fallback-text']}>{fallbackText}</p>
       )}
       {places.length > 0 && (
         <ul className={classes.places}>

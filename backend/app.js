@@ -33,25 +33,41 @@ app.use((req, res, next) => {
 app.use('/api/places', placesRoutes);
 app.use('/api/users', usersRoutes);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get('/places', async (req, res) => {
+  const fileContent = await fs.readFile('./data/places.json');
+  const placesData = JSON.parse(fileContent);
+  res.status(200).json({ places: placesData });
+});
 
-  app.get('*', (req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
-    )
-  );
-} else if (process.env.NODE_ENV === 'dev') {
-  app.use(express.static(path.join(__dirname, '../frontend/src')));
+app.get('/user-places', async (req, res) => {
+  const fileContent = await fs.readFile('./data/user-places.json');
+  const places = JSON.parse(fileContent);
+  res.status(200).json({ places });
+});
 
-  app.get('*', (req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, '../', 'frontend', 'public', 'index.html')
-    )
-  );
-} else {
-  app.get('/', (req, res) => res.send('Please set to production or dev'));
-}
+app.put('/user-places', async (req, res) => {
+  const places = req.body.places;
+  await fs.writeFile('./data/user-places.json', JSON.stringify(places));
+  res.status(200).json({ message: 'User places updated!' });
+});
+
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+//   app.get('*', (req, res) =>
+//     res.sendFile(
+//       path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+//     )
+//   );
+// } else if (process.env.NODE_ENV === 'dev') {
+//   app.use(express.static(path.join(__dirname, '../frontend/src')));
+
+//   app.get('*', (req, res) =>
+//     res.sendFile(path.resolve(__dirname, '../', 'frontend', 'public'))
+//   );
+// } else {
+//   app.get('/', (req, res) => res.send('Please set to production or dev'));
+// }
 
 app.use((req, res) => {
   const error = new HttpError('Could not find this route.', 404);
@@ -75,7 +91,7 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(`${process.env.DB_SERVER}`)
   .then(() => {
-    app.listen(process.env.PORT || 5003);
+    app.listen(process.env.PORT || 3000);
   })
   .catch((err) => {
     console.log(err, 'mongoose error:');

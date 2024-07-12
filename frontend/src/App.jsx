@@ -134,7 +134,9 @@ function App() {
   // final-countdown
   const [chosenCount, setChosenCount] = useState(0);
 
+  // place-picker
   const [userPlaces, setUserPlaces] = useState([]);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);

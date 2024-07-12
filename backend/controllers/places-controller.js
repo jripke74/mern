@@ -34,7 +34,8 @@ export const getPlaceById = async (req, res, next) => {
 };
 
 export const places = async (req, res) => {
-  const fileContent = await fs.readFile('./data/places.json');
+  const fileContent = await fs.readFile('../data/places.json');
+  console.log(fileContent);
   const placesData = JSON.parse(fileContent);
   res.status(200).json({ places: placesData });
 };

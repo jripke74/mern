@@ -16,7 +16,7 @@ export default function AvailablePlaces({ onSelectPlace }) {
 
       try {
         const places = await fetchAvailablePlaces();
-
+        console.log(navigator.geolocation.getCurrentPosition(() => {}));
         navigator.geolocation.getCurrentPosition((position) => {
           const sortedPlaces = sortPlacesByDistance(
             places,
@@ -24,8 +24,10 @@ export default function AvailablePlaces({ onSelectPlace }) {
             position.coords.longitude
           );
           setAvailablePlaces(sortedPlaces);
+          console.log(places);
           setIsFetching(false);
         });
+        setAvailablePlaces(places);
       } catch (error) {
         setError({
           message:

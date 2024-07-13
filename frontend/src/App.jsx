@@ -51,12 +51,9 @@ import Counter from './components/counter-app/Counter.jsx';
 import ConfigureCounter from './components/counter-app/ConfigureCounter.jsx';
 import { log } from './components/counter-app/log.js';
 
-// place-picker-app-2
-// import PlacesPicker from './components/place-picker-app-2/PlacesPicker.jsx';
-// import PlacesModal from './components/place-picker-app-2/PlacesModal.jsx';
-// import DeleteConfirmationPicker from './components/place-picker-app-2/DeleteConfirmationPicker.jsx';
-// import placesLogoImg from './components/place-picker-app-2/assets/logo.png';
+// place-picker
 import AvailablePlaces from './components/place-picker/AvailablePlaces.jsx';
+import { updateUserPlaces } from './components/place-picker/http.js';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 
@@ -183,22 +180,20 @@ function App() {
     setModalIsOpen(false);
   }
 
-  function handleSelectPlace(id) {
-    setPickedPlaces((prevPickedPlaces) => {
-      if (prevPickedPlaces.some((places) => places.id === id)) {
+  async function handleSelectPlace(selectedPlace) {
+    setUserPlaces((prevPickedPlaces) => {
+      if (!prevPickedPlaces) {
+        prevPickedPlaces = [];
+      }
+      if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
         return prevPickedPlaces;
       }
-      const place = AVAILABLE_PLACES.find((place) => place.id === id);
-      return [place, ...prevPickedPlaces];
+      return [selectedPlace, ...prevPickedPlaces];
     });
 
-    const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
-    if (storedIds.indexOf(id) === -1) {
-      localStorage.setItem(
-        'selectedPlaces',
-        JSON.stringify([id, ...storedIds])
-      );
-    }
+    try {
+      await updateUserPlaces([selectedPlace, ...userPlaces]);
+    } catch (error) {}
   }
 
   // place-picker

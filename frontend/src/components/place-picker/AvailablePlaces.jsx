@@ -16,7 +16,7 @@ export default function AvailablePlaces({ onSelectPlace }) {
 
       try {
         const places = await fetchAvailablePlaces();
-        console.log(navigator.geolocation.getCurrentPosition(() => {}));
+        console.log();
         navigator.geolocation.getCurrentPosition((position) => {
           const sortedPlaces = sortPlacesByDistance(
             places,
@@ -27,11 +27,10 @@ export default function AvailablePlaces({ onSelectPlace }) {
           console.log(places);
           setIsFetching(false);
         });
-        setAvailablePlaces(places);
       } catch (error) {
         setError({
           message:
-            error.message || 'Coule not fetch places, please try again later',
+            error.message || 'Could not fetch places, please try again later',
         });
         setIsFetching(false);
       }

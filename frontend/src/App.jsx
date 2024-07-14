@@ -383,7 +383,6 @@ function App() {
         <Route path="/" exact>
           <Users />
         </Route>
-        <Route path="/place-picker-2-app"></Route>
         <Route path="/counter-app">
           <>
             <CounterHeader />

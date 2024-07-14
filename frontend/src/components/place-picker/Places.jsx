@@ -8,6 +8,7 @@ export default function Places({
   isLoading,
   loadingText,
 }) {
+  console.log('from places.js', places);
   return (
     <section className={classes['places-category']}>
       <h2>{title}</h2>

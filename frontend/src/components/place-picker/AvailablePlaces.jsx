@@ -16,17 +16,19 @@ export default function AvailablePlaces({ onSelectPlace }) {
 
       try {
         const places = await fetchAvailablePlaces();
-        console.log();
-        navigator.geolocation.getCurrentPosition((position) => {
-          const sortedPlaces = sortPlacesByDistance(
-            places,
-            position.coords.latitude,
-            position.coords.longitude
-          );
-          setAvailablePlaces(sortedPlaces);
-          console.log(places);
-          setIsFetching(false);
-        });
+        setAvailablePlaces(places);
+        setIsFetching(false);
+        console.log('from AvailablePlaces.jsx', places[0]);
+        // below code only work with HTTPS:
+        // navigator.geolocation.getCurrentPosition((position) => {
+        //   const sortedPlaces = sortPlacesByDistance(
+        //     places,
+        //     position.coords.latitude,
+        //     position.coords.longitude
+        //   );
+        //   setAvailablePlaces(sortedPlaces);
+        //   setIsFetching(false);
+        // });
       } catch (error) {
         setError({
           message:
@@ -35,7 +37,6 @@ export default function AvailablePlaces({ onSelectPlace }) {
         setIsFetching(false);
       }
     }
-
     fetchPlaces();
   }, []);
 

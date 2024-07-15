@@ -38,11 +38,6 @@ import Shop from './components/cloth-shop/Shop.jsx';
 import Product from './components/cloth-shop/Product.jsx';
 import { DUMMY_PRODUCTS } from './components/cloth-shop/dummy-products.js';
 import CartContextProvider from './store/shopping-cart-context.jsx';
-import Places from './components/place-picker/Places.jsx';
-import { AVAILABLE_PLACES } from './components/place-picker/data.js';
-import DeleteConfirmation from './components/place-picker/DeleteConfirmation.jsx';
-import logoImg from './components/place-picker/assets/logo3.png';
-import Modal from './components/place-picker/PlacePickerModal.jsx';
 import { sortPlacesByDistance } from './components/place-picker/loc.js';
 import QuizHeader from './components/quiz-app/QuizHeader.jsx';
 import Quiz from './components/quiz-app/Quiz.jsx';
@@ -52,8 +47,13 @@ import ConfigureCounter from './components/counter-app/ConfigureCounter.jsx';
 import { log } from './components/counter-app/log.js';
 
 // place-picker
+import Places from './components/place-picker/Places.jsx';
 import AvailablePlaces from './components/place-picker/AvailablePlaces.jsx';
 import { updateUserPlaces } from './components/place-picker/http.js';
+import Modal from './components/place-picker/PlacePickerModal.jsx';
+import DeleteConfirmation from './components/place-picker/DeleteConfirmation.jsx';
+import { AVAILABLE_PLACES } from './components/place-picker/data.js';
+import logoImg from './components/place-picker/assets/logo3.png';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 

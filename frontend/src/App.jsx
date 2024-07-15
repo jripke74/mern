@@ -126,17 +126,50 @@ const storedPlaces = storedIds.map((id) =>
 
 function App() {
   log('<App /> rendered');
-  const selectedPlace = useRef();
 
   // final-countdown
   const [chosenCount, setChosenCount] = useState(0);
 
   // place-picker
-  const [userPlaces, setUserPlaces] = useState([]);
+  const selectedPlace = useRef();
 
+  const [userPlaces, setUserPlaces] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [availablePlaces, setAvailablePlaces] = useState([]);
-  const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
+  function handleStartRemovePlace(id) {
+    setModalIsOpen(true);
+    selectedPlace.current = id;
+  }
+
+  function handleStopRemovePlace() {
+    setModalIsOpen(false);
+  }
+
+  async function handleSelectPlace(selectedPlace) {
+    setUserPlaces((prevPickedPlaces) => {
+      if (!prevPickedPlaces) {
+        prevPickedPlaces = [];
+      }
+      if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
+        return prevPickedPlaces;
+      }
+      return [selectedPlace, ...prevPickedPlaces];
+    });
+
+    try {
+      await updateUserPlaces([selectedPlace, ...userPlaces]);
+    } catch (error) {}
+  }
+
+  const handleRemovePlace = useCallback(function handleRemovePlace() {
+    setPickedPlaces((prevPickedPlaces) =>
+      prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
+    );
+
+    setModalIsOpen(false);
+  }, []);
+
+  // end place-picker
+
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
@@ -169,46 +202,6 @@ function App() {
     setChosenCount(newCount);
     setChosenCount((prevChosenCount) => prevChosenCount + 1);
   }
-
-  // place-picker
-  function handleStartRemovePlace(id) {
-    setModalIsOpen(true);
-    selectedPlace.current = id;
-  }
-
-  function handleStopRemovePlace() {
-    setModalIsOpen(false);
-  }
-
-  async function handleSelectPlace(selectedPlace) {
-    setUserPlaces((prevPickedPlaces) => {
-      if (!prevPickedPlaces) {
-        prevPickedPlaces = [];
-      }
-      if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
-        return prevPickedPlaces;
-      }
-      return [selectedPlace, ...prevPickedPlaces];
-    });
-
-    try {
-      await updateUserPlaces([selectedPlace, ...userPlaces]);
-    } catch (error) {}
-  }
-
-  // place-picker
-  const handleRemovePlace = useCallback(function handleRemovePlace() {
-    setPickedPlaces((prevPickedPlaces) =>
-      prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
-    );
-    setModalIsOpen(false);
-
-    const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
-    localStorage.setItem(
-      'selectedPlaces',
-      JSON.stringify(storedIds.filter((id) => id !== selectedPlace.current))
-    );
-  }, []);
 
   function handleAddTask(text) {
     setProjectsState((prevState) => {

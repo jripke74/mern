@@ -20,7 +20,7 @@ export default function Places({
         <ul className={classes.places}>
           {places.map((place) => (
             <li key={place.id} className={classes['place-item']}>
-              <button onClick={() => onSelectPlace(place.id)}>
+              <button onClick={() => onSelectPlace(place)}>
                 <img
                   src={`http://localhost:3000/${place.image.src}`}
                   alt={place.image.alt}

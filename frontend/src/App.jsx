@@ -185,18 +185,6 @@ function App() {
     duration: 10,
   });
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const sortedPlaces = sortPlacesByDistance(
-        AVAILABLE_PLACES,
-        position.coords.latitude,
-        position.coords.longitude
-      );
-
-      setAvailablePlaces(sortedPlaces);
-    });
-  }, []);
-
   // final-countdown
   function handleSetCount(newCount) {
     setChosenCount(newCount);

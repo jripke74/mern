@@ -17,7 +17,7 @@ searchButton.addEventListener('click', (event) => {
   } else if (searchInput.value === 'Pikachu') {
     pokemonName = 'PIKACHU';
     pokemonId = 25;
-    weight = 60;
+    weight = '60';
     height = 4;
     hp = 35;
     attack = 55;

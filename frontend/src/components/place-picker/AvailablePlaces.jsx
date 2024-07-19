@@ -18,9 +18,8 @@ export default function AvailablePlaces({ onSelectPlace }) {
         const places = await fetchAvailablePlaces();
         setAvailablePlaces(places);
         setIsFetching(false);
-        console.log('from AvailablePlaces.jsx', places[0]);
 
-        // below code only work with HTTPS:
+        // below code only works with HTTPS:
         // navigator.geolocation.getCurrentPosition((position) => {
         //   const sortedPlaces = sortPlacesByDistance(
         //     places,

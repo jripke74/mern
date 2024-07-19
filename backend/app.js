@@ -5,9 +5,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
-import placesRoutes from './routes/places-routes.js';
-import usersRoutes from './routes/users-routes.js';
-import HttpError from './models/http-error.js';
+// import placesRoutes from './routes/places-routes.js';
+// import usersRoutes from './routes/users-routes.js';
+// import HttpError from './models/http-error.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
@@ -30,8 +30,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/places', placesRoutes);
-app.use('/api/users', usersRoutes);
+// app.use('/api/places', placesRoutes);
+// app.use('/api/users', usersRoutes);
 
 app.get('/places', async (req, res) => {
   const fileContent = await fs.readFile('./data/places.json');

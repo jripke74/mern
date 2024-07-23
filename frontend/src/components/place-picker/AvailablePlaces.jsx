@@ -16,6 +16,7 @@ export default function AvailablePlaces({ onSelectPlace }) {
 
       try {
         const places = await fetchAvailablePlaces();
+
         setAvailablePlaces(places);
         setIsFetching(false);
 

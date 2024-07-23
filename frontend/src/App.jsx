@@ -192,13 +192,15 @@ function App() {
   }
 
   const handleRemovePlace = useCallback(
-    function handleRemovePlace() {
-      setPickedPlaces((prevPickedPlaces) =>
-        prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
+    async function handleRemovePlace() {
+      setUserPlaces((prevPickedPlaces) =>
+        prevPickedPlaces.filter(
+          (place) => place.id !== selectedPlace.current.id
+        )
       );
 
       try {
-        updateUserPlaces(
+        await updateUserPlaces(
           userPlaces.filter((place) => place.id !== selectedPlace.current.id)
         );
       } catch (error) {
@@ -434,12 +436,15 @@ function App() {
         <Route path="/place-picker">
           <>
             <Modal open={errorUpdatingPlaces} onClose={handleError}>
-              <Error
-                title="An error occurred!"
-                message={errorUpdatingPlaces.message}
-                onConfirm={handleError}
-              />
+              {errorUpdatingPlaces && (
+                <Error
+                  title="An error occurred!"
+                  message={errorUpdatingPlaces.message}
+                  onConfirm={handleError}
+                />
+              )}
             </Modal>
+
             <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
               <DeleteConfirmation
                 onCancel={handleStopRemovePlace}

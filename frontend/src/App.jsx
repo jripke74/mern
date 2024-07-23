@@ -54,6 +54,7 @@ import Modal from './components/place-picker/PlacePickerModal.jsx';
 import DeleteConfirmation from './components/place-picker/DeleteConfirmation.jsx';
 import { AVAILABLE_PLACES } from './components/place-picker/data.js';
 import logoImg from './components/place-picker/assets/logo3.png';
+import Error from './components/place-picker/Error.jsx';
 
 const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
 
@@ -134,6 +135,8 @@ function App() {
   const selectedPlace = useRef();
 
   const [userPlaces, setUserPlaces] = useState([]);
+  const [errorUpdatingPlaces, setErrorUpdatingPlaces] = useState();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   function handleStartRemovePlace(id) {
     setModalIsOpen(true);
@@ -157,7 +160,12 @@ function App() {
 
     try {
       await updateUserPlaces([selectedPlace, ...userPlaces]);
-    } catch (error) {}
+    } catch (error) {
+      setUserPlaces(userPlaces);
+      setErrorUpdatingPlaces({
+        message: error.message || 'Failed to update places.',
+      });
+    }
   }
 
   const handleRemovePlace = useCallback(function handleRemovePlace() {
@@ -167,6 +175,10 @@ function App() {
 
     setModalIsOpen(false);
   }, []);
+
+  function handleError() {
+    setErrorUpdatingPlaces(null);
+  }
 
   // end place-picker
 
@@ -384,6 +396,13 @@ function App() {
         </Route>
         <Route path="/place-picker">
           <>
+            <Modal open={errorUpdatingPlaces} onClose={handleError}>
+              <Error
+                title="An error occurred!"
+                message={errorUpdatingPlaces.message}
+                onConfirm={handleError}
+              />
+            </Modal>
             <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
               <DeleteConfirmation
                 onCancel={handleStopRemovePlace}

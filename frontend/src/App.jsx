@@ -124,9 +124,9 @@ function derivedWinner(gameBoard, players) {
 }
 
 const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
-const storedPlaces = storedIds.map((id) =>
-  AVAILABLE_PLACES.find((place) => place.id === id)
-);
+// const storedPlaces = storedIds.map((id) =>
+//   AVAILABLE_PLACES.find((place) => place.id === id)
+// );
 
 function App() {
   log('<App /> rendered');

@@ -38,7 +38,6 @@ import Shop from './components/cloth-shop/Shop.jsx';
 import Product from './components/cloth-shop/Product.jsx';
 import { DUMMY_PRODUCTS } from './components/cloth-shop/dummy-products.js';
 import CartContextProvider from './store/shopping-cart-context.jsx';
-import { sortPlacesByDistance } from './components/place-picker/loc.js';
 import QuizHeader from './components/quiz-app/QuizHeader.jsx';
 import Quiz from './components/quiz-app/Quiz.jsx';
 import CounterHeader from './components/counter-app/CounterHeader';
@@ -48,22 +47,27 @@ import { log } from './components/counter-app/log.js';
 
 // place-picker
 import Places from './components/place-picker/Places.jsx';
+import Modal from './components/place-picker/PlacePickerModal.jsx';
+import DeleteConfirmation from './components/place-picker/DeleteConfirmation.jsx';
+import logoImg from './components/place-picker/assets/logo3.png';
 import AvailablePlaces from './components/place-picker/AvailablePlaces.jsx';
 import {
   fetchUserPlaces,
   updateUserPlaces,
 } from './components/place-picker/http.js';
-import Modal from './components/place-picker/PlacePickerModal.jsx';
-import DeleteConfirmation from './components/place-picker/DeleteConfirmation.jsx';
-// import { AVAILABLE_PLACES } from './components/place-picker/data.js';
-import logoImg from './components/place-picker/assets/logo3.png';
 import Error from './components/place-picker/Error.jsx';
 
-const Goals = React.lazy(() => import('./goals/components/Goals/Goals.jsx'));
+const Goals = React.lazy(() =>
+  import('./goals/components/Goals/Goals.jsx')
+);
 
 const NewPlace = React.lazy(() => import('./places/pages/NewPlace.jsx'));
-const UserPlaces = React.lazy(() => import('./places/pages/UpdatePlace.jsx'));
-const UpdatePlace = React.lazy(() => import('./places/pages/UpdatePlace.jsx'));
+const UserPlaces = React.lazy(() =>
+  import('./places/pages/UpdatePlace.jsx')
+);
+const UpdatePlace = React.lazy(() =>
+  import('./places/pages/UpdatePlace.jsx')
+);
 const Auth = React.lazy(() => import('./user/pages/Auth.jsx'));
 
 const PLAYERS = {
@@ -152,9 +156,10 @@ function App() {
         const places = await fetchUserPlaces();
         setUserPlaces(places);
       } catch (error) {
-        setError({ message: error.message || 'Failed to fetch user places.' });
+        setError({
+          message: error.message || 'Failed to fetch user places.',
+        });
       }
-
       setIsFetching(false);
     }
 
@@ -201,7 +206,9 @@ function App() {
 
       try {
         await updateUserPlaces(
-          userPlaces.filter((place) => place.id !== selectedPlace.current.id)
+          userPlaces.filter(
+            (place) => place.id !== selectedPlace.current.id
+          )
         );
       } catch (error) {
         setUserPlaces(userPlaces);
@@ -339,10 +346,15 @@ function App() {
 
   if (projectsState.selectedProjectId === null) {
     content = (
-      <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
+      <NewProject
+        onAdd={handleAddProject}
+        onCancel={handleCancelAddProject}
+      />
     );
   } else if (projectsState.selectedProjectId === undefined) {
-    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
+    content = (
+      <NoProjectSelected onStartAddProject={handleStartAddProject} />
+    );
   }
 
   const inputIsValid = userInput.duration >= 1;
